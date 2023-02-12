@@ -5,7 +5,7 @@
 ## Install
 
 ```
-npm i vuejs-dialog-box
+npm i @prostreyd/vue-dialog
 ```
 ## Insert in app
 ```
