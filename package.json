@@ -1,6 +1,5 @@
 {
-  "name": "vuejs-dialog-box",
-  "private": false,
+  "name": "@prostreyd/vue-dialog",
   "version": "0.1.0",
   "repository": {
     "type": "git",
