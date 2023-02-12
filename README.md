@@ -11,8 +11,8 @@ npm i @prostreyd/vue-dialog
 ```
 import Vue from "vue";
 import App from "./App.vue";
-import VuejsDialogBox from "vuejs-dialog-box";
-import "vuejs-dialog-box/dist/style.css";
+import VuejsDialogBox from "@prostreyd/vue-dialog";
+import "@prostreyd/vue-dialog/dist/style.css";
 
 Vue.use(VuejsDialogBox);
 
