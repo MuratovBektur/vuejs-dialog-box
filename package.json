@@ -1,0 +1,56 @@
+{
+  "name": "vuejs-dialog-box",
+  "private": false,
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MuratovBektur/vuejs-dialog-box.git"
+  },
+  "main": "./dist/vue-dialog-box.umd.cjs",
+  "module": "./dist/vue-dialog-box.js",
+  "type": "module",
+  "license": "MIT",
+  "typings": "./types/index.d.ts",
+  "author": {
+		"name": "Bektur Muratov",
+		"email": "prostreyd@gmail.com"
+	},
+  "exports": {
+    ".": {
+      "import": "./dist/vue-dialog-box.js",
+      "require": "./dist/vue-dialog-box.umd.cjs"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
+  "files": [
+    "dist",
+    "types/index.d.ts",
+    "types/vue-dialog-box.d.ts",
+    "types/vue.d.ts"
+  ],
+  "keywords": [
+		"vue.js",
+		"vue",
+		"vue confirm",
+		"vue-confirm"
+	],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "publish_to_npm": "npm run build && npm publish"
+  },
+  "dependencies": {
+    "eventemitter3": "^5.0.0",
+    "vue": "^2.7.14"
+  },
+  "devDependencies": {
+    "@types/node": "^18.13.0",
+    "@vitejs/plugin-vue2": "^2.2.0",
+    "prettier": "^2.8.3",
+    "sass": "^1.32.7",
+    "sass-loader": "^12.0.0",
+    "typescript": "^4.9.4",
+    "vite": "^4.0.4",
+    "vite-plugin-css-injected-by-js": "^3.0.0"
+  }
+}
