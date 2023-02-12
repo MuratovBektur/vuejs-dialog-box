@@ -30,4 +30,6 @@ if (ok) {
 
 ```
 ## Example
-![hippo](https://media.giphy.com/media/Mb3kf8InvHFVrEmkIG/giphy.gif)
+<p align='center'>
+  <img src='https://media.giphy.com/media/Mb3kf8InvHFVrEmkIG/giphy.gif'/>
+</p>
