@@ -1,6 +1,7 @@
 {
   "name": "@prostreyd/vue-dialog",
-  "version": "0.2.0",
+  "description": "Vue dialog box",
+  "version": "0.2.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/MuratovBektur/vuejs-dialog-box.git"
@@ -28,9 +29,14 @@
     "types/vue.d.ts"
   ],
   "keywords": [
-		"vue prompt",
+		"vue",
+		"alert",
+		"prompt",
+		"confirm",
+		"dialog",
 		"vue dialog",
 		"vue dialog box",
+		"vue prompt",
 		"vue confirm",
 		"vue alert"
 	],
