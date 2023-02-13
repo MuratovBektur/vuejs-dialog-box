@@ -91,7 +91,7 @@ export default Vue.extend({
       form: {
         alert: {
           title: 'This is alert',
-          okText: 'Yes',
+          okText: 'Ok',
         },
         prompt: {
           title: 'Write something',
