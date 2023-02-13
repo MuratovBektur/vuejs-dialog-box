@@ -1,12 +1,20 @@
+<br>
+
 # Vue Dialog Modal Box(alert, prompt, confirm)
 
+<br>
+
 > A dialog for alerts, prompts, and confirms that is lightweight and based on promises with Typescript support.
+
+<br>
 
 ## Install
 
 ```bash
 $ npm install --save @prostreyd/vue-dialog
 ```
+
+<br>
 
 ## Quick Start Usage
 ```js
