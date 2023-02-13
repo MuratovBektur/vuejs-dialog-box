@@ -1,23 +1,93 @@
 import _Vue, { PluginObject } from 'vue'
-import { IDialogBoxConfirmOptions } from '../types/vue-dialog-box'
+import {
+  IDialogBox,
+  IDialogBoxOptions,
+  IDialogBoxAlertOptions,
+  IDialogBoxPromptOptions,
+  IDialogBoxConfirmOptions,
+} from '../types/vue-dialog-box'
 import DialogBox from './dialog-box.vue'
-import eventEmitter from './event-emitter'
+import eventEmitters from './event-emitter'
 import insertComponentToApp from './utils/insertComponentToApp'
+import { DialogType, EventType } from './types'
 
-const dialogBox = {
-  confirm: (options?: IDialogBoxConfirmOptions) => {
-    eventEmitter.emit('config', options)
+const { mainEventEmitter, alertEmitter, promptEmitter, confirmEmitter } =
+  eventEmitters
 
-    eventEmitter.emit('open')
+type eventEmitterType = typeof mainEventEmitter
+
+function dialogBoxEventConstructor(
+  mainEventEmitter: eventEmitterType,
+  eventEmitter: eventEmitterType,
+  dialogBoxType: DialogType,
+  options?: IDialogBoxOptions
+) {
+  mainEventEmitter.emit(EventType.MAIN, {
+    eventEmitter,
+    type: dialogBoxType,
+  })
+  eventEmitter.emit('config', options)
+}
+
+const dialogBox: IDialogBox = {
+  alert: (options?: IDialogBoxAlertOptions) => {
+    dialogBoxEventConstructor(
+      mainEventEmitter,
+      alertEmitter,
+      DialogType.ALERT,
+      options
+    )
     return new Promise((resolve) => {
       try {
-        eventEmitter.on('confirm', () => {
+        alertEmitter.on('confirm', () => {
+          alertEmitter.emit(EventType.CLOSE)
           resolve(true)
-          eventEmitter.emit('close')
         })
-        eventEmitter.on('cancel', () => {
+      } catch (err) {
+        console.error(err)
+      }
+    })
+  },
+
+  prompt: (options?: IDialogBoxPromptOptions) => {
+    dialogBoxEventConstructor(
+      mainEventEmitter,
+      promptEmitter,
+      DialogType.PROMPT,
+      options
+    )
+    return new Promise((resolve) => {
+      try {
+        promptEmitter.on('confirm', (text?: string) => {
+          promptEmitter.emit(EventType.CLOSE)
+          resolve(text ?? '')
+        })
+        promptEmitter.on('cancel', () => {
+          promptEmitter.emit(EventType.CLOSE)
           resolve(false)
-          eventEmitter.emit('close')
+        })
+      } catch (err) {
+        console.error(err)
+      }
+    })
+  },
+
+  confirm: (options?: IDialogBoxConfirmOptions) => {
+    dialogBoxEventConstructor(
+      mainEventEmitter,
+      confirmEmitter,
+      DialogType.CONFIRM,
+      options
+    )
+    return new Promise((resolve) => {
+      try {
+        confirmEmitter.on('confirm', () => {
+          confirmEmitter.emit(EventType.CLOSE)
+          resolve(true)
+        })
+        confirmEmitter.on('cancel', () => {
+          confirmEmitter.emit(EventType.CLOSE)
+          resolve(false)
         })
       } catch (err) {
         console.error(err)

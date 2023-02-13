@@ -1,63 +1,153 @@
 <template>
-  <div class="confirm-modal" v-if="canShow">
+  <div class="confirm-modal" v-if="type">
     <div class="confirm-modal__content">
-      <div class="confirm-modal__title">
-        {{ form.title }}
-      </div>
-      <div class="confirm-modal__btn-container">
-        <button class="confirm-modal__btn" @click="onConfirm">
-          {{ form.okText }}
-        </button>
-        <button
-          class="confirm-modal__btn confirm-modal__btn_active"
-          @click="onCancel"
-        >
-          {{ form.cancelText }}
-        </button>
-      </div>
+      <!-- ALERT dialog -->
+
+      <template v-if="type === DialogType.ALERT">
+        <div class="confirm-modal__title">
+          {{ form.alert.title }}
+        </div>
+        <div class="confirm-modal__btn-container">
+          <button
+            class="confirm-modal__btn confirm-modal__btn_center confirm-modal__btn_active"
+            @click="onConfirm"
+          >
+            {{ form.alert.okText }}
+          </button>
+        </div>
+      </template>
+
+      <!-- PROMPT dialog -->
+
+      <template v-else-if="type === DialogType.PROMPT">
+        <div class="confirm-modal__title">
+          {{ form.prompt.title }}
+        </div>
+        <div>
+          <input
+            class="confirm-modal__input"
+            type="text"
+            v-model="form.prompt.text"
+            :placeholder="form.prompt.placeholder"
+          />
+        </div>
+        <div class="confirm-modal__btn-container">
+          <button class="confirm-modal__btn" @click="onConfirm">
+            {{ form.prompt.okText }}
+          </button>
+          <button
+            class="confirm-modal__btn confirm-modal__btn_active"
+            @click="onCancel"
+          >
+            {{ form.prompt.cancelText }}
+          </button>
+        </div>
+      </template>
+
+      <!-- CONFIRM dialog -->
+
+      <template v-else-if="type === DialogType.CONFIRM">
+        <div class="confirm-modal__title">
+          {{ form.confirm.title }}
+        </div>
+        <div class="confirm-modal__btn-container">
+          <button class="confirm-modal__btn" @click="onConfirm">
+            {{ form.confirm.okText }}
+          </button>
+          <button
+            class="confirm-modal__btn confirm-modal__btn_active"
+            @click="onCancel"
+          >
+            {{ form.confirm.cancelText }}
+          </button>
+        </div>
+      </template>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { IDialogBoxConfirmOptions } from '../types/vue-dialog-box'
-import eventEmitter from './event-emitter'
 import Vue from 'vue'
+import { DialogType, EventType } from './types'
+import eventEmitters from './event-emitter'
+import { IDialogBoxOptions } from '../types/vue-dialog-box'
+
+const { mainEventEmitter } = eventEmitters
+
+type eventEmitterType = typeof mainEventEmitter
 
 export default Vue.extend({
   data() {
     return {
-      canShow: false,
+      type: null as DialogType | null,
+      eventEmitter: mainEventEmitter as eventEmitterType,
+      DialogType,
       form: {
-        title: 'Are you sure?',
-        okText: 'Yes',
-        cancelText: 'No',
-      } as IDialogBoxConfirmOptions,
+        alert: {
+          title: 'Are you sure?',
+          okText: 'Yes',
+        },
+        prompt: {
+          title: 'Are you sure?',
+          okText: 'Yes',
+          cancelText: 'No',
+          text: '',
+          placeholder: '',
+        },
+        confirm: {
+          title: 'Are you sure?',
+          okText: 'Yes',
+          cancelText: 'No',
+        },
+      } as {
+        alert: IDialogBoxOptions
+        prompt: {
+          text: string
+        } & IDialogBoxOptions
+        confirm: IDialogBoxOptions
+      },
     }
   },
   mounted() {
     this.disableScroll()
-    eventEmitter.on('config', (options?: IDialogBoxConfirmOptions) => {
-      if (!options) return
-      for (let optionKey in options) {
-        const option: string | undefined =
-          options[optionKey as keyof IDialogBoxConfirmOptions]
-        if (option) {
-          this.form[optionKey as keyof IDialogBoxConfirmOptions] = option
+    mainEventEmitter.on(
+      EventType.MAIN,
+      ({
+        eventEmitter,
+        type,
+      }: {
+        eventEmitter: eventEmitterType
+        type: DialogType
+      }) => {
+        if (mainEventEmitter !== this.eventEmitter) {
+          throw 'close another dialog box'
         }
+        this.eventEmitter = eventEmitter
+        this.type = type
+        this.subscribeEvents()
       }
-    })
-    eventEmitter.on('open', () => {
-      this.canShow = true
-    })
-    eventEmitter.on('close', () => {
-      this.canShow = false
-    })
+    )
   },
   beforeDestroy() {
     this.enableScroll()
   },
   methods: {
+    subscribeEvents() {
+      this.eventEmitter.on(EventType.CONFIG, (options?: IDialogBoxOptions) => {
+        if (!options || !this.type) return
+        for (let optionKey in options) {
+          const option: string | undefined =
+            options[optionKey as keyof IDialogBoxOptions]
+          if (option) {
+            this.form[this.type][optionKey as keyof IDialogBoxOptions] = option
+          }
+        }
+      })
+      this.eventEmitter.on(EventType.CLOSE, () => {
+        this.type = null
+        this.eventEmitter = mainEventEmitter
+      })
+    },
     disableScroll() {
       document.body.style.overflowY = 'hidden'
     },
@@ -65,10 +155,14 @@ export default Vue.extend({
       document.body.style.overflowY = 'auto'
     },
     onConfirm() {
-      eventEmitter.emit('confirm')
+      let res
+      if (this.type === DialogType.PROMPT) {
+        res = this.form.prompt.text
+      }
+      this.eventEmitter.emit('confirm', res)
     },
     onCancel() {
-      eventEmitter.emit('cancel')
+      this.eventEmitter.emit('cancel')
     },
   },
 })
@@ -86,6 +180,7 @@ export default Vue.extend({
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0 20px;
   & > * {
     padding: 0;
     margin: 0;
@@ -99,9 +194,18 @@ export default Vue.extend({
   }
   &__title {
     text-align: center;
-    font-size: 12px;
-    line-height: 15px;
+    font-size: 15px;
     color: #000000;
+  }
+  &__input {
+    margin-top: 20px;
+    width: 100%;
+    border-radius: 8px;
+    padding: 5px 10px;
+    border: 1px solid #0cb4f1;
+    &:focus {
+      outline: 2px solid #0cb4f1;
+    }
   }
   &__btn {
     border: none;
@@ -113,6 +217,9 @@ export default Vue.extend({
     cursor: pointer;
     color: #828282;
     background: #e0e0e0;
+    &_center {
+      margin: auto !important;
+    }
     &_active {
       background-color: #0cb4f1;
       color: white;
