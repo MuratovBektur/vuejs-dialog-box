@@ -126,7 +126,7 @@ const T = R, M = new T(), D = new T(), F = new T(), B = new T(), S = { mainEvent
       form: {
         alert: {
           title: "This is alert",
-          okText: "Yes"
+          okText: "Ok"
         },
         prompt: {
           title: "Write something",
@@ -231,7 +231,7 @@ var U = function() {
   W,
   !1,
   null,
-  "1a3e6f55",
+  "4c97a5fd",
   null,
   null
 );
