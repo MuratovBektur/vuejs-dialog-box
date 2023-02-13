@@ -1,8 +1,7 @@
 <br>
 
-# Vue Dialog Modal Box(alert, prompt, confirm)
+# Vue Dialog Modal Box (alert, prompt, confirm)
 
-<br>
 
 > A dialog for alerts, prompts, and confirms that is lightweight and based on promises with Typescript support.
 
