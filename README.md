@@ -1,6 +1,6 @@
 # Vuejs Dialog Plugin
 
-> A lightweight, promise based alert, prompt, confirm dialog with Typescript support.
+> A dialog for alerts, prompts, and confirms that is lightweight and based on promises with Typescript support.
 
 ## Install
 
