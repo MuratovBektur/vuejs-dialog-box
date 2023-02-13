@@ -110,6 +110,7 @@ const plugin: PluginObject<any> = {
           const root = caller.$root
           if (!isPluginInsertedToApp) {
             insertComponentToApp(Vue, root, DialogBox)
+            isPluginInsertedToApp = true
           }
         }
         return dialogBox
