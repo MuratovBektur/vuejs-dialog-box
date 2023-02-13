@@ -1,31 +1,31 @@
 import $ from "vue";
-var E = /* @__PURE__ */ ((n) => (n.ALERT = "alert", n.PROMPT = "prompt", n.CONFIRM = "confirm", n))(E || {}), p = /* @__PURE__ */ ((n) => (n.MAIN = "main", n.CLOSE = "close", n.CONFIG = "config", n))(p || {}), R = {}, M = {
+var E = /* @__PURE__ */ ((n) => (n.ALERT = "alert", n.PROMPT = "prompt", n.CONFIRM = "confirm", n))(E || {}), _ = /* @__PURE__ */ ((n) => (n.MAIN = "main", n.CLOSE = "close", n.CONFIG = "config", n))(_ || {}), A = {}, I = {
   get exports() {
-    return R;
+    return A;
   },
   set exports(n) {
-    R = n;
+    A = n;
   }
 };
 (function(n) {
   var t = Object.prototype.hasOwnProperty, e = "~";
-  function _() {
+  function p() {
   }
-  Object.create && (_.prototype = /* @__PURE__ */ Object.create(null), new _().__proto__ || (e = !1));
+  Object.create && (p.prototype = /* @__PURE__ */ Object.create(null), new p().__proto__ || (e = !1));
   function v(o, r, s) {
     this.fn = o, this.context = r, this.once = s || !1;
   }
-  function b(o, r, s, c, a) {
+  function b(o, r, s, c, l) {
     if (typeof s != "function")
       throw new TypeError("The listener must be a function");
-    var u = new v(s, c || o, a), l = e ? e + r : r;
-    return o._events[l] ? o._events[l].fn ? o._events[l] = [o._events[l], u] : o._events[l].push(u) : (o._events[l] = u, o._eventsCount++), o;
+    var u = new v(s, c || o, l), a = e ? e + r : r;
+    return o._events[a] ? o._events[a].fn ? o._events[a] = [o._events[a], u] : o._events[a].push(u) : (o._events[a] = u, o._eventsCount++), o;
   }
   function y(o, r) {
-    --o._eventsCount === 0 ? o._events = new _() : delete o._events[r];
+    --o._eventsCount === 0 ? o._events = new p() : delete o._events[r];
   }
   function m() {
-    this._events = new _(), this._eventsCount = 0;
+    this._events = new p(), this._eventsCount = 0;
   }
   m.prototype.eventNames = function() {
     var r = [], s, c;
@@ -40,13 +40,13 @@ var E = /* @__PURE__ */ ((n) => (n.ALERT = "alert", n.PROMPT = "prompt", n.CONFI
       return [];
     if (c.fn)
       return [c.fn];
-    for (var a = 0, u = c.length, l = new Array(u); a < u; a++)
-      l[a] = c[a].fn;
-    return l;
+    for (var l = 0, u = c.length, a = new Array(u); l < u; l++)
+      a[l] = c[l].fn;
+    return a;
   }, m.prototype.listenerCount = function(r) {
     var s = e ? e + r : r, c = this._events[s];
     return c ? c.fn ? 1 : c.length : 0;
-  }, m.prototype.emit = function(r, s, c, a, u, l) {
+  }, m.prototype.emit = function(r, s, c, l, u, a) {
     var d = e ? e + r : r;
     if (!this._events[d])
       return !1;
@@ -60,11 +60,11 @@ var E = /* @__PURE__ */ ((n) => (n.ALERT = "alert", n.PROMPT = "prompt", n.CONFI
         case 3:
           return i.fn.call(i.context, s, c), !0;
         case 4:
-          return i.fn.call(i.context, s, c, a), !0;
+          return i.fn.call(i.context, s, c, l), !0;
         case 5:
-          return i.fn.call(i.context, s, c, a, u), !0;
+          return i.fn.call(i.context, s, c, l, u), !0;
         case 6:
-          return i.fn.call(i.context, s, c, a, u, l), !0;
+          return i.fn.call(i.context, s, c, l, u, a), !0;
       }
       for (f = 1, C = new Array(h - 1); f < h; f++)
         C[f - 1] = arguments[f];
@@ -83,7 +83,7 @@ var E = /* @__PURE__ */ ((n) => (n.ALERT = "alert", n.PROMPT = "prompt", n.CONFI
             i[f].fn.call(i[f].context, s, c);
             break;
           case 4:
-            i[f].fn.call(i[f].context, s, c, a);
+            i[f].fn.call(i[f].context, s, c, l);
             break;
           default:
             if (!C)
@@ -97,27 +97,27 @@ var E = /* @__PURE__ */ ((n) => (n.ALERT = "alert", n.PROMPT = "prompt", n.CONFI
     return b(this, r, s, c, !1);
   }, m.prototype.once = function(r, s, c) {
     return b(this, r, s, c, !0);
-  }, m.prototype.removeListener = function(r, s, c, a) {
+  }, m.prototype.removeListener = function(r, s, c, l) {
     var u = e ? e + r : r;
     if (!this._events[u])
       return this;
     if (!s)
       return y(this, u), this;
-    var l = this._events[u];
-    if (l.fn)
-      l.fn === s && (!a || l.once) && (!c || l.context === c) && y(this, u);
+    var a = this._events[u];
+    if (a.fn)
+      a.fn === s && (!l || a.once) && (!c || a.context === c) && y(this, u);
     else {
-      for (var d = 0, i = [], h = l.length; d < h; d++)
-        (l[d].fn !== s || a && !l[d].once || c && l[d].context !== c) && i.push(l[d]);
+      for (var d = 0, i = [], h = a.length; d < h; d++)
+        (a[d].fn !== s || l && !a[d].once || c && a[d].context !== c) && i.push(a[d]);
       i.length ? this._events[u] = i.length === 1 ? i[0] : i : y(this, u);
     }
     return this;
   }, m.prototype.removeAllListeners = function(r) {
     var s;
-    return r ? (s = e ? e + r : r, this._events[s] && y(this, s)) : (this._events = new _(), this._eventsCount = 0), this;
+    return r ? (s = e ? e + r : r, this._events[s] && y(this, s)) : (this._events = new p(), this._eventsCount = 0), this;
   }, m.prototype.off = m.prototype.removeListener, m.prototype.addListener = m.prototype.on, m.prefixed = e, m.EventEmitter = m, n.exports = m;
-})(M);
-const T = R, I = new T(), F = new T(), B = new T(), Y = new T(), N = { mainEventEmitter: I, alertEmitter: F, promptEmitter: B, confirmEmitter: Y }, { mainEventEmitter: O } = N, D = $.extend({
+})(I);
+const T = A, M = new T(), D = new T(), F = new T(), B = new T(), N = { mainEventEmitter: M, alertEmitter: D, promptEmitter: F, confirmEmitter: B }, { mainEventEmitter: O } = N, Y = $.extend({
   data() {
     return {
       type: null,
@@ -145,7 +145,7 @@ const T = R, I = new T(), F = new T(), B = new T(), Y = new T(), N = { mainEvent
   },
   mounted() {
     this.disableScroll(), O.on(
-      p.MAIN,
+      _.MAIN,
       ({
         eventEmitter: n,
         type: t
@@ -157,17 +157,20 @@ const T = R, I = new T(), F = new T(), B = new T(), Y = new T(), N = { mainEvent
     );
   },
   beforeDestroy() {
-    this.enableScroll();
+    this.onDestroy();
   },
   methods: {
+    onDestroy() {
+      this.enableScroll(), this.form.prompt.text = "";
+    },
     subscribeEvents() {
-      this.eventEmitter.on(p.CONFIG, (n) => {
+      this.eventEmitter.on(_.CONFIG, (n) => {
         if (!(!n || !this.type))
           for (let t in n) {
             const e = n[t];
             e && (this.form[this.type][t] = e);
           }
-      }), this.eventEmitter.on(p.CLOSE, () => {
+      }), this.eventEmitter.on(_.CLOSE, () => {
         this.type = null, this.eventEmitter = O;
       });
     },
@@ -175,25 +178,25 @@ const T = R, I = new T(), F = new T(), B = new T(), Y = new T(), N = { mainEvent
       document.body.style.overflowY = "hidden";
     },
     enableScroll() {
-      document.body.style.overflowY = "auto";
+      document.body.style.overflowY = "";
     },
     onConfirm() {
       let n;
-      this.type === E.PROMPT && (n = this.form.prompt.text), this.eventEmitter.emit("confirm", n);
+      this.type === E.PROMPT && (n = this.form.prompt.text), this.eventEmitter.emit("confirm", n), this.onDestroy();
     },
     onCancel() {
-      this.eventEmitter.emit("cancel");
+      this.eventEmitter.emit("cancel"), this.onDestroy();
     }
   }
 });
-function G(n, t, e, _, v, b, y, m) {
+function G(n, t, e, p, v, b, y, m) {
   var o = typeof n == "function" ? n.options : n;
-  t && (o.render = t, o.staticRenderFns = e, o._compiled = !0), _ && (o.functional = !0), b && (o._scopeId = "data-v-" + b);
+  t && (o.render = t, o.staticRenderFns = e, o._compiled = !0), p && (o.functional = !0), b && (o._scopeId = "data-v-" + b);
   var r;
-  if (y ? (r = function(a) {
-    a = a || // cached call
+  if (y ? (r = function(l) {
+    l = l || // cached call
     this.$vnode && this.$vnode.ssrContext || // stateful
-    this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !a && typeof __VUE_SSR_CONTEXT__ < "u" && (a = __VUE_SSR_CONTEXT__), v && v.call(this, a), a && a._registeredComponents && a._registeredComponents.add(y);
+    this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !l && typeof __VUE_SSR_CONTEXT__ < "u" && (l = __VUE_SSR_CONTEXT__), v && v.call(this, l), l && l._registeredComponents && l._registeredComponents.add(y);
   }, o._ssrRegister = r) : v && (r = m ? function() {
     v.call(
       this,
@@ -203,8 +206,8 @@ function G(n, t, e, _, v, b, y, m) {
     if (o.functional) {
       o._injectStyles = r;
       var s = o.render;
-      o.render = function(u, l) {
-        return r.call(l), s(u, l);
+      o.render = function(u, a) {
+        return r.call(a), s(u, a);
       };
     } else {
       var c = o.beforeCreate;
@@ -217,37 +220,37 @@ function G(n, t, e, _, v, b, y, m) {
 }
 var U = function() {
   var t = this, e = t._self._c;
-  return t._self._setupProxy, t.type ? e("div", { staticClass: "confirm-modal" }, [e("div", { staticClass: "confirm-modal__content" }, [t.type === t.DialogType.ALERT ? [e("div", { staticClass: "confirm-modal__title" }, [t._v(" " + t._s(t.form.alert.title) + " ")]), e("div", { staticClass: "confirm-modal__btn-container" }, [e("button", { staticClass: "confirm-modal__btn confirm-modal__btn_center confirm-modal__btn_active", on: { click: t.onConfirm } }, [t._v(" " + t._s(t.form.alert.okText) + " ")])])] : t.type === t.DialogType.PROMPT ? [e("div", { staticClass: "confirm-modal__title" }, [t._v(" " + t._s(t.form.prompt.title) + " ")]), e("div", [e("input", { directives: [{ name: "model", rawName: "v-model", value: t.form.prompt.text, expression: "form.prompt.text" }], staticClass: "confirm-modal__input", attrs: { type: "text", placeholder: t.form.prompt.placeholder }, domProps: { value: t.form.prompt.text }, on: { input: function(_) {
-    _.target.composing || t.$set(t.form.prompt, "text", _.target.value);
+  return t._self._setupProxy, t.type ? e("div", { staticClass: "confirm-modal" }, [e("div", { staticClass: "confirm-modal__content" }, [t.type === t.DialogType.ALERT ? [e("div", { staticClass: "confirm-modal__title" }, [t._v(" " + t._s(t.form.alert.title) + " ")]), e("div", { staticClass: "confirm-modal__btn-container" }, [e("button", { staticClass: "confirm-modal__btn confirm-modal__btn_center confirm-modal__btn_active", on: { click: t.onConfirm } }, [t._v(" " + t._s(t.form.alert.okText) + " ")])])] : t.type === t.DialogType.PROMPT ? [e("div", { staticClass: "confirm-modal__title" }, [t._v(" " + t._s(t.form.prompt.title) + " ")]), e("div", [e("input", { directives: [{ name: "model", rawName: "v-model", value: t.form.prompt.text, expression: "form.prompt.text" }], staticClass: "confirm-modal__input", attrs: { type: "text", placeholder: t.form.prompt.placeholder }, domProps: { value: t.form.prompt.text }, on: { input: function(p) {
+    p.target.composing || t.$set(t.form.prompt, "text", p.target.value);
   } } })]), e("div", { staticClass: "confirm-modal__btn-container" }, [e("button", { staticClass: "confirm-modal__btn", on: { click: t.onConfirm } }, [t._v(" " + t._s(t.form.prompt.okText) + " ")]), e("button", { staticClass: "confirm-modal__btn confirm-modal__btn_active", on: { click: t.onCancel } }, [t._v(" " + t._s(t.form.prompt.cancelText) + " ")])])] : t.type === t.DialogType.CONFIRM ? [e("div", { staticClass: "confirm-modal__title" }, [t._v(" " + t._s(t.form.confirm.title) + " ")]), e("div", { staticClass: "confirm-modal__btn-container" }, [e("button", { staticClass: "confirm-modal__btn", on: { click: t.onConfirm } }, [t._v(" " + t._s(t.form.confirm.okText) + " ")]), e("button", { staticClass: "confirm-modal__btn confirm-modal__btn_active", on: { click: t.onCancel } }, [t._v(" " + t._s(t.form.confirm.cancelText) + " ")])])] : t._e()], 2)]) : t._e();
 }, X = [], z = /* @__PURE__ */ G(
-  D,
+  Y,
   U,
   X,
   !1,
   null,
-  "13eab234",
+  "1908b5d8",
   null,
   null
 );
-const A = z.exports;
+const R = z.exports;
 function K() {
   const n = document.createElement("div");
   return document.body.appendChild(n), n;
 }
 function W(n, t, e) {
-  const _ = K();
+  const p = K();
   new n({
     parent: t,
     render: (v) => v(e)
-  }).$mount(_);
+  }).$mount(p);
 }
 const { mainEventEmitter: L, alertEmitter: P, promptEmitter: g, confirmEmitter: w } = N;
-function k(n, t, e, _) {
-  n.emit(p.MAIN, {
+function k(n, t, e, p) {
+  n.emit(_.MAIN, {
     eventEmitter: t,
     type: e
-  }), t.emit("config", _);
+  }), t.emit("config", p);
 }
 const j = {
   alert: (n) => (k(
@@ -258,7 +261,7 @@ const j = {
   ), new Promise((t) => {
     try {
       P.on("confirm", () => {
-        P.emit(p.CLOSE), t(!0);
+        P.emit(_.CLOSE), t(!0);
       });
     } catch (e) {
       console.error(e);
@@ -272,9 +275,9 @@ const j = {
   ), new Promise((t) => {
     try {
       g.on("confirm", (e) => {
-        g.emit(p.CLOSE), t(e ?? "");
+        g.emit(_.CLOSE), t(e ?? "");
       }), g.on("cancel", () => {
-        g.emit(p.CLOSE), t(!1);
+        g.emit(_.CLOSE), t(!1);
       });
     } catch (e) {
       console.error(e);
@@ -288,9 +291,9 @@ const j = {
   ), new Promise((t) => {
     try {
       w.on("confirm", () => {
-        w.emit(p.CLOSE), t(!0);
+        w.emit(_.CLOSE), t(!0);
       }), w.on("cancel", () => {
-        w.emit(p.CLOSE), t(!1);
+        w.emit(_.CLOSE), t(!1);
       });
     } catch (e) {
       console.error(e);
@@ -298,16 +301,17 @@ const j = {
   }))
 }, H = {
   install(n) {
+    let t = !1;
     Object.defineProperty(n.prototype, "$dialogBox", {
       get: function() {
-        const t = this;
-        if (t instanceof n) {
-          const e = t.$root;
-          W(n, e, A);
+        const e = this;
+        if (e instanceof n) {
+          const p = e.$root;
+          t || (W(n, p, R), t = !0);
         }
         return j;
       }
-    }), n.component("vue-dialog-box", A);
+    }), n.component("vue-dialog-box", R);
   }
 };
 export {

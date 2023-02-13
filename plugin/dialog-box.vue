@@ -129,9 +129,13 @@ export default Vue.extend({
     )
   },
   beforeDestroy() {
-    this.enableScroll()
+    this.onDestroy()
   },
   methods: {
+    onDestroy() {
+      this.enableScroll()
+      this.form.prompt.text = ''
+    },
     subscribeEvents() {
       this.eventEmitter.on(EventType.CONFIG, (options?: IDialogBoxOptions) => {
         if (!options || !this.type) return
@@ -152,7 +156,7 @@ export default Vue.extend({
       document.body.style.overflowY = 'hidden'
     },
     enableScroll() {
-      document.body.style.overflowY = 'auto'
+      document.body.style.overflowY = ''
     },
     onConfirm() {
       let res
@@ -160,9 +164,11 @@ export default Vue.extend({
         res = this.form.prompt.text
       }
       this.eventEmitter.emit('confirm', res)
+      this.onDestroy()
     },
     onCancel() {
       this.eventEmitter.emit('cancel')
+      this.onDestroy()
     },
   },
 })
