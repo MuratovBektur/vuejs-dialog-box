@@ -1,4 +1,4 @@
-# Vuejs Dialog Plugin
+# Vue Dialog Modal Box(alert, prompt, confirm)
 
 > A dialog for alerts, prompts, and confirms that is lightweight and based on promises with Typescript support.
 
