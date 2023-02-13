@@ -1,7 +1,7 @@
 {
   "name": "@prostreyd/vue-dialog",
   "description": "Vue dialog modal box (alert, prompt, confirm)",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "repository": {
     "type": "git",
     "url": "https://github.com/MuratovBektur/vuejs-dialog-box.git"
@@ -12,9 +12,9 @@
   "license": "MIT",
   "typings": "./types/index.d.ts",
   "author": {
-		"name": "Bektur Muratov",
-		"email": "prostreyd@gmail.com"
-	},
+    "name": "Bektur Muratov",
+    "email": "prostreyd@gmail.com"
+  },
   "exports": {
     ".": {
       "import": "./dist/vue-dialog-box.js",
@@ -29,17 +29,17 @@
     "types/vue.d.ts"
   ],
   "keywords": [
-		"vue",
-		"alert",
-		"prompt",
-		"confirm",
-		"dialog",
-		"vue dialog",
-		"vue dialog box",
-		"vue prompt",
-		"vue confirm",
-		"vue alert"
-	],
+    "vue",
+    "alert",
+    "prompt",
+    "confirm",
+    "dialog",
+    "vue dialog",
+    "vue dialog box",
+    "vue prompt",
+    "vue confirm",
+    "vue alert"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -47,7 +47,8 @@
     "updateReadmi": "npm run pub && git add . && git commit -m\"update readmi file\" && git push"
   },
   "dependencies": {
-    "eventemitter3": "^5.0.0"
+    "eventemitter3": "^5.0.0",
+    "promise": "^8.3.0"
   },
   "peerDependencies": {
     "vue": "^2.7.14"

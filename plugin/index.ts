@@ -10,6 +10,7 @@ import DialogBox from './dialog-box.vue'
 import eventEmitters from './event-emitter'
 import insertComponentToApp from './utils/insertComponentToApp'
 import { DialogType, EventType } from './types'
+import Promise from 'promise'
 
 const { mainEventEmitter, alertEmitter, promptEmitter, confirmEmitter } =
   eventEmitters
