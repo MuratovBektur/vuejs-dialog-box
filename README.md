@@ -18,13 +18,19 @@ import "@prostreyd/vue-dialog/dist/style.css";
 Vue.use(VuejsDialogBox);
 ```
 
+<br>
+
 ### Alert
+
+<br>
 
 ```js
 await this.$dialogBox.title();
 ///...your code
 
 ```
+
+<br>
 
 <p align='center'>
   <img src='https://media.giphy.com/media/D045GKe5McbqmJs72h/giphy.gif'/>
@@ -40,12 +46,19 @@ Title of dialog. Can be empty. Default value: "This is alert"
 
 Confirm button text. Can be empty. Default value: "Ok"
 
+
+<br>
+
 ### Prompt
+
+<br>
 
 ```js
 const text = await this.$dialogBox.prompt();
 ///...your code
 ```
+
+<br>
 
 <p align='center'>
   <img src='https://media.giphy.com/media/upkZDUDyCCdY49xRUW/giphy.gif'/>
@@ -70,7 +83,13 @@ Cancel button text. Can be empty. Default value: "No"
 Input placeholder text. Can be empty. Default value: ""
 
 
+<br>
+
 ### Confirm
+
+
+<br>
+
 
 ```js
 const ok = await this.$dialogBox.confirm();
@@ -78,6 +97,8 @@ if (ok) {
 ///...your code
 }
 ```
+
+<br>
 
 <p align='center'>
   <img src='https://media.giphy.com/media/7cfjeP8LpcUrU9VxCy/giphy.gif'/>
