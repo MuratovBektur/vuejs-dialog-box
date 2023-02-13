@@ -75,7 +75,7 @@ const text = await this.$dialogBox.prompt();
 
 *  **title?:(string)**
 
-Title of dialog. Can be empty. Default value: "This is alert"
+Title of dialog. Can be empty. Default value: "Write something"
 
 *  **okText?:(string)**
 
@@ -115,7 +115,7 @@ if (ok) {
 
 *  **title?:(string)**
 
-Title of dialog. Can be empty. Default value: "This is alert"
+Title of dialog. Can be empty. Default value: "Are you sure?"
 
 *  **okText?:(string)**
 
