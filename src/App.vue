@@ -8,10 +8,10 @@
 import Vue from 'vue'
 export default Vue.extend({
   mounted() {
-    // this.$dialogBox.confirm({
-    //   title: 'another',
-    //   okText: '12',
-    // })
+    this.$dialogBox.prompt({
+      title: 'another',
+      okText: 'YEad',
+    })
   },
   methods: {
     showAlert() {

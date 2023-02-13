@@ -1,10 +1,10 @@
 import $ from "vue";
-var E = /* @__PURE__ */ ((n) => (n.ALERT = "alert", n.PROMPT = "prompt", n.CONFIRM = "confirm", n))(E || {}), _ = /* @__PURE__ */ ((n) => (n.MAIN = "main", n.CLOSE = "close", n.CONFIG = "config", n))(_ || {}), A = {}, I = {
+var E = /* @__PURE__ */ ((n) => (n.ALERT = "alert", n.PROMPT = "prompt", n.CONFIRM = "confirm", n))(E || {}), _ = /* @__PURE__ */ ((n) => (n.MAIN = "main", n.CLOSE = "close", n.CONFIG = "config", n))(_ || {}), R = {}, I = {
   get exports() {
-    return A;
+    return R;
   },
   set exports(n) {
-    A = n;
+    R = n;
   }
 };
 (function(n) {
@@ -70,8 +70,8 @@ var E = /* @__PURE__ */ ((n) => (n.ALERT = "alert", n.PROMPT = "prompt", n.CONFI
         C[f - 1] = arguments[f];
       i.fn.apply(i.context, C);
     } else {
-      var S = i.length, x;
-      for (f = 0; f < S; f++)
+      var A = i.length, x;
+      for (f = 0; f < A; f++)
         switch (i[f].once && this.removeListener(r, i[f].fn, void 0, !0), h) {
           case 1:
             i[f].fn.call(i[f].context);
@@ -117,7 +117,7 @@ var E = /* @__PURE__ */ ((n) => (n.ALERT = "alert", n.PROMPT = "prompt", n.CONFI
     return r ? (s = e ? e + r : r, this._events[s] && y(this, s)) : (this._events = new p(), this._eventsCount = 0), this;
   }, m.prototype.off = m.prototype.removeListener, m.prototype.addListener = m.prototype.on, m.prefixed = e, m.EventEmitter = m, n.exports = m;
 })(I);
-const T = A, M = new T(), D = new T(), F = new T(), B = new T(), N = { mainEventEmitter: M, alertEmitter: D, promptEmitter: F, confirmEmitter: B }, { mainEventEmitter: O } = N, Y = $.extend({
+const T = R, M = new T(), D = new T(), F = new T(), B = new T(), S = { mainEventEmitter: M, alertEmitter: D, promptEmitter: F, confirmEmitter: B }, { mainEventEmitter: O } = S, Y = $.extend({
   data() {
     return {
       type: null,
@@ -125,11 +125,11 @@ const T = A, M = new T(), D = new T(), F = new T(), B = new T(), N = { mainEvent
       DialogType: E,
       form: {
         alert: {
-          title: "Are you sure?",
+          title: "This is alert",
           okText: "Yes"
         },
         prompt: {
-          title: "Are you sure?",
+          title: "Write something",
           okText: "Yes",
           cancelText: "No",
           text: "",
@@ -222,30 +222,32 @@ var U = function() {
   var t = this, e = t._self._c;
   return t._self._setupProxy, t.type ? e("div", { staticClass: "confirm-modal" }, [e("div", { staticClass: "confirm-modal__content" }, [t.type === t.DialogType.ALERT ? [e("div", { staticClass: "confirm-modal__title" }, [t._v(" " + t._s(t.form.alert.title) + " ")]), e("div", { staticClass: "confirm-modal__btn-container" }, [e("button", { staticClass: "confirm-modal__btn confirm-modal__btn_center confirm-modal__btn_active", on: { click: t.onConfirm } }, [t._v(" " + t._s(t.form.alert.okText) + " ")])])] : t.type === t.DialogType.PROMPT ? [e("div", { staticClass: "confirm-modal__title" }, [t._v(" " + t._s(t.form.prompt.title) + " ")]), e("div", [e("input", { directives: [{ name: "model", rawName: "v-model", value: t.form.prompt.text, expression: "form.prompt.text" }], staticClass: "confirm-modal__input", attrs: { type: "text", placeholder: t.form.prompt.placeholder }, domProps: { value: t.form.prompt.text }, on: { input: function(p) {
     p.target.composing || t.$set(t.form.prompt, "text", p.target.value);
-  } } })]), e("div", { staticClass: "confirm-modal__btn-container" }, [e("button", { staticClass: "confirm-modal__btn", on: { click: t.onConfirm } }, [t._v(" " + t._s(t.form.prompt.okText) + " ")]), e("button", { staticClass: "confirm-modal__btn confirm-modal__btn_active", on: { click: t.onCancel } }, [t._v(" " + t._s(t.form.prompt.cancelText) + " ")])])] : t.type === t.DialogType.CONFIRM ? [e("div", { staticClass: "confirm-modal__title" }, [t._v(" " + t._s(t.form.confirm.title) + " ")]), e("div", { staticClass: "confirm-modal__btn-container" }, [e("button", { staticClass: "confirm-modal__btn", on: { click: t.onConfirm } }, [t._v(" " + t._s(t.form.confirm.okText) + " ")]), e("button", { staticClass: "confirm-modal__btn confirm-modal__btn_active", on: { click: t.onCancel } }, [t._v(" " + t._s(t.form.confirm.cancelText) + " ")])])] : t._e()], 2)]) : t._e();
-}, X = [], z = /* @__PURE__ */ G(
+  } } })]), e("div", { staticClass: "confirm-modal__btn-container" }, [e("button", { staticClass: "confirm-modal__btn", class: {
+    "confirm-modal__btn_active": t.form.prompt.text
+  }, on: { click: t.onConfirm } }, [t._v(" " + t._s(t.form.prompt.okText) + " ")]), e("button", { staticClass: "confirm-modal__btn confirm-modal__btn_error", on: { click: t.onCancel } }, [t._v(" " + t._s(t.form.prompt.cancelText) + " ")])])] : t.type === t.DialogType.CONFIRM ? [e("div", { staticClass: "confirm-modal__title" }, [t._v(" " + t._s(t.form.confirm.title) + " ")]), e("div", { staticClass: "confirm-modal__btn-container" }, [e("button", { staticClass: "confirm-modal__btn", on: { click: t.onConfirm } }, [t._v(" " + t._s(t.form.confirm.okText) + " ")]), e("button", { staticClass: "confirm-modal__btn confirm-modal__btn_active", on: { click: t.onCancel } }, [t._v(" " + t._s(t.form.confirm.cancelText) + " ")])])] : t._e()], 2)]) : t._e();
+}, W = [], X = /* @__PURE__ */ G(
   Y,
   U,
-  X,
+  W,
   !1,
   null,
-  "1908b5d8",
+  "1a3e6f55",
   null,
   null
 );
-const R = z.exports;
-function K() {
+const N = X.exports;
+function z() {
   const n = document.createElement("div");
   return document.body.appendChild(n), n;
 }
-function W(n, t, e) {
-  const p = K();
+function K(n, t, e) {
+  const p = z();
   new n({
     parent: t,
     render: (v) => v(e)
   }).$mount(p);
 }
-const { mainEventEmitter: L, alertEmitter: P, promptEmitter: g, confirmEmitter: w } = N;
+const { mainEventEmitter: L, alertEmitter: P, promptEmitter: g, confirmEmitter: w } = S;
 function k(n, t, e, p) {
   n.emit(_.MAIN, {
     eventEmitter: t,
@@ -307,11 +309,11 @@ const j = {
         const e = this;
         if (e instanceof n) {
           const p = e.$root;
-          t || (W(n, p, R), t = !0);
+          t || (K(n, p, N), t = !0);
         }
         return j;
       }
-    }), n.component("vue-dialog-box", R);
+    }), n.component("vue-dialog-box", N);
   }
 };
 export {

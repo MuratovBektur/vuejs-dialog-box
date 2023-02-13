@@ -1,6 +1,6 @@
 {
   "name": "@prostreyd/vue-dialog",
-  "version": "0.1.6",
+  "version": "0.1.8",
   "repository": {
     "type": "git",
     "url": "https://github.com/MuratovBektur/vuejs-dialog-box.git"
@@ -28,10 +28,11 @@
     "types/vue.d.ts"
   ],
   "keywords": [
-		"vue.js",
-		"vue",
+		"vue prompt",
+		"vue dialog",
+		"vue dialog box",
 		"vue confirm",
-		"vue-confirm"
+		"vue alert"
 	],
   "scripts": {
     "dev": "vite",

@@ -32,11 +32,17 @@
           />
         </div>
         <div class="confirm-modal__btn-container">
-          <button class="confirm-modal__btn" @click="onConfirm">
+          <button
+            class="confirm-modal__btn"
+            :class="{
+              'confirm-modal__btn_active': form.prompt.text,
+            }"
+            @click="onConfirm"
+          >
             {{ form.prompt.okText }}
           </button>
           <button
-            class="confirm-modal__btn confirm-modal__btn_active"
+            class="confirm-modal__btn confirm-modal__btn_error"
             @click="onCancel"
           >
             {{ form.prompt.cancelText }}
@@ -84,11 +90,11 @@ export default Vue.extend({
       DialogType,
       form: {
         alert: {
-          title: 'Are you sure?',
+          title: 'This is alert',
           okText: 'Yes',
         },
         prompt: {
-          title: 'Are you sure?',
+          title: 'Write something',
           okText: 'Yes',
           cancelText: 'No',
           text: '',
@@ -228,6 +234,10 @@ export default Vue.extend({
     }
     &_active {
       background-color: #0cb4f1;
+      color: white;
+    }
+    &_error {
+      background-color: red;
       color: white;
     }
 
