@@ -1,7 +1,7 @@
 {
   "name": "@prostreyd/vue-dialog",
   "description": "Vue dialog modal box (alert, prompt, confirm)",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "repository": {
     "type": "git",
     "url": "https://github.com/MuratovBektur/vuejs-dialog-box.git"
@@ -47,8 +47,8 @@
     "updateReadmi": "npm run pub && git add . && git commit -m\"update readmi file\" && git push"
   },
   "dependencies": {
-    "eventemitter3": "^5.0.0",
-    "promise": "^8.3.0"
+    "es6-promise": "^4.2.8",
+    "eventemitter3": "^5.0.0"
   },
   "peerDependencies": {
     "vue": "^2.7.14"

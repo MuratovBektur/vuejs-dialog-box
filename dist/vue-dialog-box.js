@@ -1,132 +1,128 @@
-import bt from "vue";
-var R = /* @__PURE__ */ ((t) => (t.ALERT = "alert", t.PROMPT = "prompt", t.CONFIRM = "confirm", t))(R || {}), w = /* @__PURE__ */ ((t) => (t.MAIN = "main", t.CLOSE = "close", t.CONFIG = "config", t))(w || {}), ot = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
-function Et(t) {
-  return t && t.__esModule && Object.prototype.hasOwnProperty.call(t, "default") ? t.default : t;
-}
-var X = {}, wt = {
+import Rt from "vue";
+var $ = /* @__PURE__ */ ((s) => (s.ALERT = "alert", s.PROMPT = "prompt", s.CONFIRM = "confirm", s))($ || {}), T = /* @__PURE__ */ ((s) => (s.MAIN = "main", s.CLOSE = "close", s.CONFIG = "config", s))(T || {}), et = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {}, it = {}, kt = {
   get exports() {
-    return X;
+    return it;
   },
-  set exports(t) {
-    X = t;
+  set exports(s) {
+    it = s;
   }
 };
-(function(t) {
-  var e = Object.prototype.hasOwnProperty, n = "~";
-  function o() {
+(function(s) {
+  var r = Object.prototype.hasOwnProperty, o = "~";
+  function m() {
   }
-  Object.create && (o.prototype = /* @__PURE__ */ Object.create(null), new o().__proto__ || (n = !1));
-  function f(r, i, a) {
-    this.fn = r, this.context = i, this.once = a || !1;
+  Object.create && (m.prototype = /* @__PURE__ */ Object.create(null), new m().__proto__ || (o = !1));
+  function x(c, a, v) {
+    this.fn = c, this.context = a, this.once = v || !1;
   }
-  function v(r, i, a, s, p) {
-    if (typeof a != "function")
+  function k(c, a, v, h, d) {
+    if (typeof v != "function")
       throw new TypeError("The listener must be a function");
-    var y = new f(a, s || r, p), h = n ? n + i : i;
-    return r._events[h] ? r._events[h].fn ? r._events[h] = [r._events[h], y] : r._events[h].push(y) : (r._events[h] = y, r._eventsCount++), r;
+    var b = new x(v, h || c, d), _ = o ? o + a : a;
+    return c._events[_] ? c._events[_].fn ? c._events[_] = [c._events[_], b] : c._events[_].push(b) : (c._events[_] = b, c._eventsCount++), c;
   }
-  function m(r, i) {
-    --r._eventsCount === 0 ? r._events = new o() : delete r._events[i];
+  function E(c, a) {
+    --c._eventsCount === 0 ? c._events = new m() : delete c._events[a];
   }
-  function u() {
-    this._events = new o(), this._eventsCount = 0;
+  function p() {
+    this._events = new m(), this._eventsCount = 0;
   }
-  u.prototype.eventNames = function() {
-    var i = [], a, s;
+  p.prototype.eventNames = function() {
+    var a = [], v, h;
     if (this._eventsCount === 0)
-      return i;
-    for (s in a = this._events)
-      e.call(a, s) && i.push(n ? s.slice(1) : s);
-    return Object.getOwnPropertySymbols ? i.concat(Object.getOwnPropertySymbols(a)) : i;
-  }, u.prototype.listeners = function(i) {
-    var a = n ? n + i : i, s = this._events[a];
-    if (!s)
+      return a;
+    for (h in v = this._events)
+      r.call(v, h) && a.push(o ? h.slice(1) : h);
+    return Object.getOwnPropertySymbols ? a.concat(Object.getOwnPropertySymbols(v)) : a;
+  }, p.prototype.listeners = function(a) {
+    var v = o ? o + a : a, h = this._events[v];
+    if (!h)
       return [];
-    if (s.fn)
-      return [s.fn];
-    for (var p = 0, y = s.length, h = new Array(y); p < y; p++)
-      h[p] = s[p].fn;
-    return h;
-  }, u.prototype.listenerCount = function(i) {
-    var a = n ? n + i : i, s = this._events[a];
-    return s ? s.fn ? 1 : s.length : 0;
-  }, u.prototype.emit = function(i, a, s, p, y, h) {
-    var C = n ? n + i : i;
-    if (!this._events[C])
+    if (h.fn)
+      return [h.fn];
+    for (var d = 0, b = h.length, _ = new Array(b); d < b; d++)
+      _[d] = h[d].fn;
+    return _;
+  }, p.prototype.listenerCount = function(a) {
+    var v = o ? o + a : a, h = this._events[v];
+    return h ? h.fn ? 1 : h.length : 0;
+  }, p.prototype.emit = function(a, v, h, d, b, _) {
+    var O = o ? o + a : a;
+    if (!this._events[O])
       return !1;
-    var c = this._events[C], x = arguments.length, T, _;
-    if (c.fn) {
-      switch (c.once && this.removeListener(i, c.fn, void 0, !0), x) {
+    var f = this._events[O], A = arguments.length, P, y;
+    if (f.fn) {
+      switch (f.once && this.removeListener(a, f.fn, void 0, !0), A) {
         case 1:
-          return c.fn.call(c.context), !0;
+          return f.fn.call(f.context), !0;
         case 2:
-          return c.fn.call(c.context, a), !0;
+          return f.fn.call(f.context, v), !0;
         case 3:
-          return c.fn.call(c.context, a, s), !0;
+          return f.fn.call(f.context, v, h), !0;
         case 4:
-          return c.fn.call(c.context, a, s, p), !0;
+          return f.fn.call(f.context, v, h, d), !0;
         case 5:
-          return c.fn.call(c.context, a, s, p, y), !0;
+          return f.fn.call(f.context, v, h, d, b), !0;
         case 6:
-          return c.fn.call(c.context, a, s, p, y, h), !0;
+          return f.fn.call(f.context, v, h, d, b, _), !0;
       }
-      for (_ = 1, T = new Array(x - 1); _ < x; _++)
-        T[_ - 1] = arguments[_];
-      c.fn.apply(c.context, T);
+      for (y = 1, P = new Array(A - 1); y < A; y++)
+        P[y - 1] = arguments[y];
+      f.fn.apply(f.context, P);
     } else {
-      var gt = c.length, F;
-      for (_ = 0; _ < gt; _++)
-        switch (c[_].once && this.removeListener(i, c[_].fn, void 0, !0), x) {
+      var V = f.length, S;
+      for (y = 0; y < V; y++)
+        switch (f[y].once && this.removeListener(a, f[y].fn, void 0, !0), A) {
           case 1:
-            c[_].fn.call(c[_].context);
+            f[y].fn.call(f[y].context);
             break;
           case 2:
-            c[_].fn.call(c[_].context, a);
+            f[y].fn.call(f[y].context, v);
             break;
           case 3:
-            c[_].fn.call(c[_].context, a, s);
+            f[y].fn.call(f[y].context, v, h);
             break;
           case 4:
-            c[_].fn.call(c[_].context, a, s, p);
+            f[y].fn.call(f[y].context, v, h, d);
             break;
           default:
-            if (!T)
-              for (F = 1, T = new Array(x - 1); F < x; F++)
-                T[F - 1] = arguments[F];
-            c[_].fn.apply(c[_].context, T);
+            if (!P)
+              for (S = 1, P = new Array(A - 1); S < A; S++)
+                P[S - 1] = arguments[S];
+            f[y].fn.apply(f[y].context, P);
         }
     }
     return !0;
-  }, u.prototype.on = function(i, a, s) {
-    return v(this, i, a, s, !1);
-  }, u.prototype.once = function(i, a, s) {
-    return v(this, i, a, s, !0);
-  }, u.prototype.removeListener = function(i, a, s, p) {
-    var y = n ? n + i : i;
-    if (!this._events[y])
+  }, p.prototype.on = function(a, v, h) {
+    return k(this, a, v, h, !1);
+  }, p.prototype.once = function(a, v, h) {
+    return k(this, a, v, h, !0);
+  }, p.prototype.removeListener = function(a, v, h, d) {
+    var b = o ? o + a : a;
+    if (!this._events[b])
       return this;
-    if (!a)
-      return m(this, y), this;
-    var h = this._events[y];
-    if (h.fn)
-      h.fn === a && (!p || h.once) && (!s || h.context === s) && m(this, y);
+    if (!v)
+      return E(this, b), this;
+    var _ = this._events[b];
+    if (_.fn)
+      _.fn === v && (!d || _.once) && (!h || _.context === h) && E(this, b);
     else {
-      for (var C = 0, c = [], x = h.length; C < x; C++)
-        (h[C].fn !== a || p && !h[C].once || s && h[C].context !== s) && c.push(h[C]);
-      c.length ? this._events[y] = c.length === 1 ? c[0] : c : m(this, y);
+      for (var O = 0, f = [], A = _.length; O < A; O++)
+        (_[O].fn !== v || d && !_[O].once || h && _[O].context !== h) && f.push(_[O]);
+      f.length ? this._events[b] = f.length === 1 ? f[0] : f : E(this, b);
     }
     return this;
-  }, u.prototype.removeAllListeners = function(i) {
-    var a;
-    return i ? (a = n ? n + i : i, this._events[a] && m(this, a)) : (this._events = new o(), this._eventsCount = 0), this;
-  }, u.prototype.off = u.prototype.removeListener, u.prototype.addListener = u.prototype.on, u.prefixed = n, u.EventEmitter = u, t.exports = u;
-})(wt);
-const q = X, Ct = new q(), xt = new q(), Tt = new q(), At = new q(), ut = { mainEventEmitter: Ct, alertEmitter: xt, promptEmitter: Tt, confirmEmitter: At }, { mainEventEmitter: z } = ut, Rt = bt.extend({
+  }, p.prototype.removeAllListeners = function(a) {
+    var v;
+    return a ? (v = o ? o + a : a, this._events[v] && E(this, v)) : (this._events = new m(), this._eventsCount = 0), this;
+  }, p.prototype.off = p.prototype.removeListener, p.prototype.addListener = p.prototype.on, p.prefixed = o, p.EventEmitter = p, s.exports = p;
+})(kt);
+const K = it, Lt = new K(), Mt = new K(), Nt = new K(), Ft = new K(), vt = { mainEventEmitter: Lt, alertEmitter: Mt, promptEmitter: Nt, confirmEmitter: Ft }, { mainEventEmitter: z } = vt, It = Rt.extend({
   data() {
     return {
       type: null,
       eventEmitter: z,
-      DialogType: R,
+      DialogType: $,
       form: {
         alert: {
           title: "This is alert",
@@ -149,14 +145,14 @@ const q = X, Ct = new q(), xt = new q(), Tt = new q(), At = new q(), ut = { main
   },
   mounted() {
     this.disableScroll(), z.on(
-      w.MAIN,
+      T.MAIN,
       ({
-        eventEmitter: t,
-        type: e
+        eventEmitter: s,
+        type: r
       }) => {
         if (z !== this.eventEmitter)
           throw "close another dialog box";
-        this.eventEmitter = t, this.type = e, this.subscribeEvents();
+        this.eventEmitter = s, this.type = r, this.subscribeEvents();
       }
     );
   },
@@ -168,13 +164,13 @@ const q = X, Ct = new q(), xt = new q(), Tt = new q(), At = new q(), ut = { main
       this.enableScroll(), this.form.prompt.text = "";
     },
     subscribeEvents() {
-      this.eventEmitter.on(w.CONFIG, (t) => {
-        if (!(!t || !this.type))
-          for (let e in t) {
-            const n = t[e];
-            n && (this.form[this.type][e] = n);
+      this.eventEmitter.on(T.CONFIG, (s) => {
+        if (!(!s || !this.type))
+          for (let r in s) {
+            const o = s[r];
+            o && (this.form[this.type][r] = o);
           }
-      }), this.eventEmitter.on(w.CLOSE, () => {
+      }), this.eventEmitter.on(T.CLOSE, () => {
         this.type = null, this.eventEmitter = z;
       });
     },
@@ -185,596 +181,471 @@ const q = X, Ct = new q(), xt = new q(), Tt = new q(), At = new q(), ut = { main
       document.body.style.overflowY = "";
     },
     onConfirm() {
-      let t;
-      this.type === R.PROMPT && (t = this.form.prompt.text), this.eventEmitter.emit("confirm", t), this.onDestroy();
+      let s;
+      this.type === $.PROMPT && (s = this.form.prompt.text), this.eventEmitter.emit("confirm", s), this.onDestroy();
     },
     onCancel() {
       this.eventEmitter.emit("cancel"), this.onDestroy();
     }
   }
 });
-function Ot(t, e, n, o, f, v, m, u) {
-  var r = typeof t == "function" ? t.options : t;
-  e && (r.render = e, r.staticRenderFns = n, r._compiled = !0), o && (r.functional = !0), v && (r._scopeId = "data-v-" + v);
-  var i;
-  if (m ? (i = function(p) {
-    p = p || // cached call
+function jt(s, r, o, m, x, k, E, p) {
+  var c = typeof s == "function" ? s.options : s;
+  r && (c.render = r, c.staticRenderFns = o, c._compiled = !0), m && (c.functional = !0), k && (c._scopeId = "data-v-" + k);
+  var a;
+  if (E ? (a = function(d) {
+    d = d || // cached call
     this.$vnode && this.$vnode.ssrContext || // stateful
-    this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !p && typeof __VUE_SSR_CONTEXT__ < "u" && (p = __VUE_SSR_CONTEXT__), f && f.call(this, p), p && p._registeredComponents && p._registeredComponents.add(m);
-  }, r._ssrRegister = i) : f && (i = u ? function() {
-    f.call(
+    this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext, !d && typeof __VUE_SSR_CONTEXT__ < "u" && (d = __VUE_SSR_CONTEXT__), x && x.call(this, d), d && d._registeredComponents && d._registeredComponents.add(E);
+  }, c._ssrRegister = a) : x && (a = p ? function() {
+    x.call(
       this,
-      (r.functional ? this.parent : this).$root.$options.shadowRoot
+      (c.functional ? this.parent : this).$root.$options.shadowRoot
     );
-  } : f), i)
-    if (r.functional) {
-      r._injectStyles = i;
-      var a = r.render;
-      r.render = function(y, h) {
-        return i.call(h), a(y, h);
+  } : x), a)
+    if (c.functional) {
+      c._injectStyles = a;
+      var v = c.render;
+      c.render = function(b, _) {
+        return a.call(_), v(b, _);
       };
     } else {
-      var s = r.beforeCreate;
-      r.beforeCreate = s ? [].concat(s, i) : [i];
+      var h = c.beforeCreate;
+      c.beforeCreate = h ? [].concat(h, a) : [a];
     }
   return {
-    exports: t,
-    options: r
+    exports: s,
+    options: c
   };
 }
-var Pt = function() {
-  var e = this, n = e._self._c;
-  return e._self._setupProxy, e.type ? n("div", { staticClass: "confirm-modal" }, [n("div", { staticClass: "confirm-modal__content" }, [e.type === e.DialogType.ALERT ? [n("div", { staticClass: "confirm-modal__title" }, [e._v(" " + e._s(e.form.alert.title) + " ")]), n("div", { staticClass: "confirm-modal__btn-container" }, [n("button", { staticClass: "confirm-modal__btn confirm-modal__btn_center confirm-modal__btn_active", on: { click: e.onConfirm } }, [e._v(" " + e._s(e.form.alert.okText) + " ")])])] : e.type === e.DialogType.PROMPT ? [n("div", { staticClass: "confirm-modal__title" }, [e._v(" " + e._s(e.form.prompt.title) + " ")]), n("div", [n("input", { directives: [{ name: "model", rawName: "v-model", value: e.form.prompt.text, expression: "form.prompt.text" }], staticClass: "confirm-modal__input", attrs: { type: "text", placeholder: e.form.prompt.placeholder }, domProps: { value: e.form.prompt.text }, on: { input: function(o) {
-    o.target.composing || e.$set(e.form.prompt, "text", o.target.value);
-  } } })]), n("div", { staticClass: "confirm-modal__btn-container" }, [n("button", { staticClass: "confirm-modal__btn", class: {
-    "confirm-modal__btn_active": e.form.prompt.text
-  }, on: { click: e.onConfirm } }, [e._v(" " + e._s(e.form.prompt.okText) + " ")]), n("button", { staticClass: "confirm-modal__btn confirm-modal__btn_error", on: { click: e.onCancel } }, [e._v(" " + e._s(e.form.prompt.cancelText) + " ")])])] : e.type === e.DialogType.CONFIRM ? [n("div", { staticClass: "confirm-modal__title" }, [e._v(" " + e._s(e.form.confirm.title) + " ")]), n("div", { staticClass: "confirm-modal__btn-container" }, [n("button", { staticClass: "confirm-modal__btn", on: { click: e.onConfirm } }, [e._v(" " + e._s(e.form.confirm.okText) + " ")]), n("button", { staticClass: "confirm-modal__btn confirm-modal__btn_active", on: { click: e.onCancel } }, [e._v(" " + e._s(e.form.confirm.cancelText) + " ")])])] : e._e()], 2)]) : e._e();
-}, jt = [], St = /* @__PURE__ */ Ot(
-  Rt,
-  Pt,
-  jt,
+var Dt = function() {
+  var r = this, o = r._self._c;
+  return r._self._setupProxy, r.type ? o("div", { staticClass: "confirm-modal" }, [o("div", { staticClass: "confirm-modal__content" }, [r.type === r.DialogType.ALERT ? [o("div", { staticClass: "confirm-modal__title" }, [r._v(" " + r._s(r.form.alert.title) + " ")]), o("div", { staticClass: "confirm-modal__btn-container" }, [o("button", { staticClass: "confirm-modal__btn confirm-modal__btn_center confirm-modal__btn_active", on: { click: r.onConfirm } }, [r._v(" " + r._s(r.form.alert.okText) + " ")])])] : r.type === r.DialogType.PROMPT ? [o("div", { staticClass: "confirm-modal__title" }, [r._v(" " + r._s(r.form.prompt.title) + " ")]), o("div", [o("input", { directives: [{ name: "model", rawName: "v-model", value: r.form.prompt.text, expression: "form.prompt.text" }], staticClass: "confirm-modal__input", attrs: { type: "text", placeholder: r.form.prompt.placeholder }, domProps: { value: r.form.prompt.text }, on: { input: function(m) {
+    m.target.composing || r.$set(r.form.prompt, "text", m.target.value);
+  } } })]), o("div", { staticClass: "confirm-modal__btn-container" }, [o("button", { staticClass: "confirm-modal__btn", class: {
+    "confirm-modal__btn_active": r.form.prompt.text
+  }, on: { click: r.onConfirm } }, [r._v(" " + r._s(r.form.prompt.okText) + " ")]), o("button", { staticClass: "confirm-modal__btn confirm-modal__btn_error", on: { click: r.onCancel } }, [r._v(" " + r._s(r.form.prompt.cancelText) + " ")])])] : r.type === r.DialogType.CONFIRM ? [o("div", { staticClass: "confirm-modal__title" }, [r._v(" " + r._s(r.form.confirm.title) + " ")]), o("div", { staticClass: "confirm-modal__btn-container" }, [o("button", { staticClass: "confirm-modal__btn", on: { click: r.onConfirm } }, [r._v(" " + r._s(r.form.confirm.okText) + " ")]), o("button", { staticClass: "confirm-modal__btn confirm-modal__btn_active", on: { click: r.onCancel } }, [r._v(" " + r._s(r.form.confirm.cancelText) + " ")])])] : r._e()], 2)]) : r._e();
+}, $t = [], qt = /* @__PURE__ */ jt(
+  It,
+  Dt,
+  $t,
   !1,
   null,
   "4c97a5fd",
   null,
   null
 );
-const it = St.exports;
-function kt() {
-  const t = document.createElement("div");
-  return document.body.appendChild(t), t;
+const ut = qt.exports;
+function Bt() {
+  const s = document.createElement("div");
+  return document.body.appendChild(s), s;
 }
-function Lt(t, e, n) {
-  const o = kt();
-  new t({
-    parent: e,
-    render: (f) => f(n)
-  }).$mount(o);
+function Yt(s, r, o) {
+  const m = Bt();
+  new s({
+    parent: r,
+    render: (x) => x(o)
+  }).$mount(m);
 }
-var Z = {}, Ft = {
+function Gt(s) {
+  throw new Error('Could not dynamically require "' + s + '". Please configure the dynamicRequireTargets or/and ignoreDynamicRequires option of @rollup/plugin-commonjs appropriately for this require call to work.');
+}
+var st = {}, Wt = {
   get exports() {
-    return Z;
+    return st;
   },
-  set exports(t) {
-    Z = t;
+  set exports(s) {
+    st = s;
   }
-}, J = {}, $t = {
-  get exports() {
-    return J;
-  },
-  set exports(t) {
-    J = t;
-  }
-}, lt = rt;
-function rt(t) {
-  E.length || M(), E[E.length] = t;
-}
-var E = [], M, b = 0, Nt = 1024;
-function st() {
-  for (; b < E.length; ) {
-    var t = b;
-    if (b = b + 1, E[t].call(), b > Nt) {
-      for (var e = 0, n = E.length - b; e < n; e++)
-        E[e] = E[e + b];
-      E.length -= b, b = 0;
+};
+/*!
+ * @overview es6-promise - a tiny implementation of Promises/A+.
+ * @copyright Copyright (c) 2014 Yehuda Katz, Tom Dale, Stefan Penner and contributors (Conversion to ES6 API by Jake Archibald)
+ * @license   Licensed under MIT license
+ *            See https://raw.githubusercontent.com/stefanpenner/es6-promise/master/LICENSE
+ * @version   v4.2.8+1e68dce6
+ */
+(function(s, r) {
+  (function(o, m) {
+    s.exports = m();
+  })(et, function() {
+    function o(t) {
+      var e = typeof t;
+      return t !== null && (e === "object" || e === "function");
     }
-  }
-  E.length = 0, b = 0;
-}
-var at = typeof ot < "u" ? ot : self, pt = at.MutationObserver || at.WebKitMutationObserver;
-typeof pt == "function" ? M = zt(st) : M = ht(st);
-rt.requestFlush = M;
-function zt(t) {
-  var e = 1, n = new pt(t), o = document.createTextNode("");
-  return n.observe(o, { characterData: !0 }), function() {
-    e = -e, o.data = e;
-  };
-}
-function ht(t) {
-  return function() {
-    var n = setTimeout(f, 0), o = setInterval(f, 50);
-    function f() {
-      clearTimeout(n), clearInterval(o), t();
+    function m(t) {
+      return typeof t == "function";
     }
-  };
-}
-rt.makeRequestCallFromTimer = ht;
-var Mt = lt;
-function B() {
-}
-var S = null, k = {};
-function It(t) {
-  try {
-    return t.then;
-  } catch (e) {
-    return S = e, k;
-  }
-}
-function Dt(t, e) {
-  try {
-    return t(e);
-  } catch (n) {
-    return S = n, k;
-  }
-}
-function qt(t, e, n) {
-  try {
-    t(e, n);
-  } catch (o) {
-    return S = o, k;
-  }
-}
-var L = g;
-function g(t) {
-  if (typeof this != "object")
-    throw new TypeError("Promises must be constructed via new");
-  if (typeof t != "function")
-    throw new TypeError("Promise constructor's argument is not a function");
-  this._x = 0, this._y = 0, this._z = null, this._A = null, t !== B && _t(t, this);
-}
-g._B = null;
-g._C = null;
-g._D = B;
-g.prototype.then = function(t, e) {
-  if (this.constructor !== g)
-    return Bt(this, t, e);
-  var n = new g(B);
-  return I(this, new mt(t, e, n)), n;
-};
-function Bt(t, e, n) {
-  return new t.constructor(function(o, f) {
-    var v = new g(B);
-    v.then(o, f), I(t, new mt(e, n, v));
-  });
-}
-function I(t, e) {
-  for (; t._y === 3; )
-    t = t._z;
-  if (g._B && g._B(t), t._y === 0) {
-    if (t._x === 0) {
-      t._x = 1, t._A = e;
-      return;
+    var x = void 0;
+    Array.isArray ? x = Array.isArray : x = function(t) {
+      return Object.prototype.toString.call(t) === "[object Array]";
+    };
+    var k = x, E = 0, p = void 0, c = void 0, a = function(e, n) {
+      L[E] = e, L[E + 1] = n, E += 2, E === 2 && (c ? c(M) : N());
+    };
+    function v(t) {
+      c = t;
     }
-    if (t._x === 1) {
-      t._x = 2, t._A = [t._A, e];
-      return;
+    function h(t) {
+      a = t;
     }
-    t._A.push(e);
-    return;
-  }
-  Ut(t, e);
-}
-function Ut(t, e) {
-  Mt(function() {
-    var n = t._y === 1 ? e.onFulfilled : e.onRejected;
-    if (n === null) {
-      t._y === 1 ? Q(e.promise, t._z) : O(e.promise, t._z);
-      return;
+    var d = typeof window < "u" ? window : void 0, b = d || {}, _ = b.MutationObserver || b.WebKitMutationObserver, O = typeof self > "u" && typeof process < "u" && {}.toString.call(process) === "[object process]", f = typeof Uint8ClampedArray < "u" && typeof importScripts < "u" && typeof MessageChannel < "u";
+    function A() {
+      return function() {
+        return process.nextTick(M);
+      };
     }
-    var o = Dt(n, t._z);
-    o === k ? O(e.promise, S) : Q(e.promise, o);
-  });
-}
-function Q(t, e) {
-  if (e === t)
-    return O(
-      t,
-      new TypeError("A promise cannot be resolved with itself.")
-    );
-  if (e && (typeof e == "object" || typeof e == "function")) {
-    var n = It(e);
-    if (n === k)
-      return O(t, S);
-    if (n === t.then && e instanceof g) {
-      t._y = 3, t._z = e, V(t);
-      return;
-    } else if (typeof n == "function") {
-      _t(n.bind(e), t);
-      return;
+    function P() {
+      return typeof p < "u" ? function() {
+        p(M);
+      } : S();
     }
-  }
-  t._y = 1, t._z = e, V(t);
-}
-function O(t, e) {
-  t._y = 2, t._z = e, g._C && g._C(t, e), V(t);
-}
-function V(t) {
-  if (t._x === 1 && (I(t, t._A), t._A = null), t._x === 2) {
-    for (var e = 0; e < t._A.length; e++)
-      I(t, t._A[e]);
-    t._A = null;
-  }
-}
-function mt(t, e, n) {
-  this.onFulfilled = typeof t == "function" ? t : null, this.onRejected = typeof e == "function" ? e : null, this.promise = n;
-}
-function _t(t, e) {
-  var n = !1, o = qt(t, function(f) {
-    n || (n = !0, Q(e, f));
-  }, function(f) {
-    n || (n = !0, O(e, f));
-  });
-  !n && o === k && (n = !0, O(e, S));
-}
-var Wt = L;
-Wt.prototype.done = function(t, e) {
-  var n = arguments.length ? this.then.apply(this, arguments) : this;
-  n.then(null, function(o) {
-    setTimeout(function() {
-      throw o;
-    }, 0);
-  });
-};
-var U = L;
-U.prototype.finally = function(t) {
-  return this.then(function(e) {
-    return U.resolve(t()).then(function() {
-      return e;
-    });
-  }, function(e) {
-    return U.resolve(t()).then(function() {
-      throw e;
-    });
-  });
-};
-var l = L, Yt = A(!0), Gt = A(!1), Ht = A(null), Kt = A(void 0), Xt = A(0), Zt = A("");
-function A(t) {
-  var e = new l(l._D);
-  return e._y = 1, e._z = t, e;
-}
-l.resolve = function(t) {
-  if (t instanceof l)
-    return t;
-  if (t === null)
-    return Ht;
-  if (t === void 0)
-    return Kt;
-  if (t === !0)
-    return Yt;
-  if (t === !1)
-    return Gt;
-  if (t === 0)
-    return Xt;
-  if (t === "")
-    return Zt;
-  if (typeof t == "object" || typeof t == "function")
-    try {
-      var e = t.then;
-      if (typeof e == "function")
-        return new l(e.bind(t));
-    } catch (n) {
-      return new l(function(o, f) {
-        f(n);
-      });
+    function y() {
+      var t = 0, e = new _(M), n = document.createTextNode("");
+      return e.observe(n, { characterData: !0 }), function() {
+        n.data = t = ++t % 2;
+      };
     }
-  return A(t);
-};
-var P = function(t) {
-  return typeof Array.from == "function" ? (P = Array.from, Array.from(t)) : (P = function(e) {
-    return Array.prototype.slice.call(e);
-  }, Array.prototype.slice.call(t));
-};
-l.all = function(t) {
-  var e = P(t);
-  return new l(function(n, o) {
-    if (e.length === 0)
-      return n([]);
-    var f = e.length;
-    function v(u, r) {
-      if (r && (typeof r == "object" || typeof r == "function"))
-        if (r instanceof l && r.then === l.prototype.then) {
-          for (; r._y === 3; )
-            r = r._z;
-          if (r._y === 1)
-            return v(u, r._z);
-          r._y === 2 && o(r._z), r.then(function(s) {
-            v(u, s);
-          }, o);
-          return;
-        } else {
-          var i = r.then;
-          if (typeof i == "function") {
-            var a = new l(i.bind(r));
-            a.then(function(s) {
-              v(u, s);
-            }, o);
-            return;
-          }
-        }
-      e[u] = r, --f === 0 && n(e);
+    function V() {
+      var t = new MessageChannel();
+      return t.port1.onmessage = M, function() {
+        return t.port2.postMessage(0);
+      };
     }
-    for (var m = 0; m < e.length; m++)
-      v(m, e[m]);
-  });
-};
-function W(t) {
-  return { status: "fulfilled", value: t };
-}
-function ct(t) {
-  return { status: "rejected", reason: t };
-}
-function Jt(t) {
-  if (t && (typeof t == "object" || typeof t == "function")) {
-    if (t instanceof l && t.then === l.prototype.then)
-      return t.then(W, ct);
-    var e = t.then;
-    if (typeof e == "function")
-      return new l(e.bind(t)).then(W, ct);
-  }
-  return W(t);
-}
-l.allSettled = function(t) {
-  return l.all(P(t).map(Jt));
-};
-l.reject = function(t) {
-  return new l(function(e, n) {
-    n(t);
-  });
-};
-l.race = function(t) {
-  return new l(function(e, n) {
-    P(t).forEach(function(o) {
-      l.resolve(o).then(e, n);
-    });
-  });
-};
-l.prototype.catch = function(t) {
-  return this.then(null, t);
-};
-function ft(t) {
-  if (typeof AggregateError == "function")
-    return new AggregateError(t, "All promises were rejected");
-  var e = new Error("All promises were rejected");
-  return e.name = "AggregateError", e.errors = t, e;
-}
-l.any = function(e) {
-  return new l(function(n, o) {
-    var f = P(e), v = !1, m = [];
-    function u(i) {
-      v || (v = !0, n(i));
+    function S() {
+      var t = setTimeout;
+      return function() {
+        return t(M, 1);
+      };
     }
-    function r(i) {
-      m.push(i), m.length === f.length && o(ft(m));
+    var L = new Array(1e3);
+    function M() {
+      for (var t = 0; t < E; t += 2) {
+        var e = L[t], n = L[t + 1];
+        e(n), L[t] = void 0, L[t + 1] = void 0;
+      }
+      E = 0;
     }
-    f.length === 0 ? o(ft(m)) : f.forEach(function(i) {
-      l.resolve(i).then(u, r);
-    });
-  });
-};
-var vt = lt, D = [], tt = [], Qt = vt.makeRequestCallFromTimer(Vt);
-function Vt() {
-  if (tt.length)
-    throw tt.shift();
-}
-var te = et;
-function et(t) {
-  var e;
-  D.length ? e = D.pop() : e = new yt(), e.task = t, vt(e);
-}
-function yt() {
-  this.task = null;
-}
-yt.prototype.call = function() {
-  try {
-    this.task.call();
-  } catch (t) {
-    et.onerror ? et.onerror(t) : (tt.push(t), Qt());
-  } finally {
-    this.task = null, D[D.length] = this;
-  }
-};
-var j = L, nt = te;
-j.denodeify = function(t, e) {
-  return typeof e == "number" && e !== 1 / 0 ? ee(t, e) : ne(t);
-};
-var dt = "function (err, res) {if (err) { rj(err); } else { rs(res); }}";
-function ee(t, e) {
-  for (var n = [], o = 0; o < e; o++)
-    n.push("a" + o);
-  var f = [
-    "return function (" + n.join(",") + ") {",
-    "var self = this;",
-    "return new Promise(function (rs, rj) {",
-    "var res = fn.call(",
-    ["self"].concat(n).concat([dt]).join(","),
-    ");",
-    "if (res &&",
-    '(typeof res === "object" || typeof res === "function") &&',
-    'typeof res.then === "function"',
-    ") {rs(res);}",
-    "});",
-    "};"
-  ].join("");
-  return Function(["Promise", "fn"], f)(j, t);
-}
-function ne(t) {
-  for (var e = Math.max(t.length - 1, 3), n = [], o = 0; o < e; o++)
-    n.push("a" + o);
-  var f = [
-    "return function (" + n.join(",") + ") {",
-    "var self = this;",
-    "var args;",
-    "var argLength = arguments.length;",
-    "if (arguments.length > " + e + ") {",
-    "args = new Array(arguments.length + 1);",
-    "for (var i = 0; i < arguments.length; i++) {",
-    "args[i] = arguments[i];",
-    "}",
-    "}",
-    "return new Promise(function (rs, rj) {",
-    "var cb = " + dt + ";",
-    "var res;",
-    "switch (argLength) {",
-    n.concat(["extra"]).map(function(v, m) {
-      return "case " + m + ":res = fn.call(" + ["self"].concat(n.slice(0, m)).concat("cb").join(",") + ");break;";
-    }).join(""),
-    "default:",
-    "args[argLength] = cb;",
-    "res = fn.apply(self, args);",
-    "}",
-    "if (res &&",
-    '(typeof res === "object" || typeof res === "function") &&',
-    'typeof res.then === "function"',
-    ") {rs(res);}",
-    "});",
-    "};"
-  ].join("");
-  return Function(
-    ["Promise", "fn"],
-    f
-  )(j, t);
-}
-j.nodeify = function(t) {
-  return function() {
-    var e = Array.prototype.slice.call(arguments), n = typeof e[e.length - 1] == "function" ? e.pop() : null, o = this;
-    try {
-      return t.apply(this, arguments).nodeify(n, o);
-    } catch (f) {
-      if (n === null || typeof n > "u")
-        return new j(function(v, m) {
-          m(f);
+    function ht() {
+      try {
+        var t = Function("return this")().require("vertx");
+        return p = t.runOnLoop || t.runOnContext, P();
+      } catch {
+        return S();
+      }
+    }
+    var N = void 0;
+    O ? N = A() : _ ? N = y() : f ? N = V() : d === void 0 && typeof Gt == "function" ? N = ht() : N = S();
+    function X(t, e) {
+      var n = this, i = new this.constructor(F);
+      i[W] === void 0 && ft(i);
+      var l = n._state;
+      if (l) {
+        var u = arguments[l - 1];
+        a(function() {
+          return ct(l, i, u, n._result);
         });
-      nt(function() {
-        n.call(o, f);
+      } else
+        H(n, i, t, e);
+      return i;
+    }
+    function J(t) {
+      var e = this;
+      if (t && typeof t == "object" && t.constructor === e)
+        return t;
+      var n = new e(F);
+      return B(n, t), n;
+    }
+    var W = Math.random().toString(36).substring(2);
+    function F() {
+    }
+    var I = void 0, q = 1, j = 2;
+    function dt() {
+      return new TypeError("You cannot resolve a promise with itself");
+    }
+    function _t() {
+      return new TypeError("A promises callback cannot return that same promise.");
+    }
+    function mt(t, e, n, i) {
+      try {
+        t.call(e, n, i);
+      } catch (l) {
+        return l;
+      }
+    }
+    function pt(t, e, n) {
+      a(function(i) {
+        var l = !1, u = mt(n, e, function(g) {
+          l || (l = !0, e !== g ? B(i, g) : R(i, g));
+        }, function(g) {
+          l || (l = !0, w(i, g));
+        }, "Settle: " + (i._label || " unknown promise"));
+        !l && u && (l = !0, w(i, u));
+      }, t);
+    }
+    function yt(t, e) {
+      e._state === q ? R(t, e._result) : e._state === j ? w(t, e._result) : H(e, void 0, function(n) {
+        return B(t, n);
+      }, function(n) {
+        return w(t, n);
       });
     }
-  };
-};
-j.prototype.nodeify = function(t, e) {
-  if (typeof t != "function")
-    return this;
-  this.then(function(n) {
-    nt(function() {
-      t.call(e, null, n);
-    });
-  }, function(n) {
-    nt(function() {
-      t.call(e, n);
-    });
+    function at(t, e, n) {
+      e.constructor === t.constructor && n === X && e.constructor.resolve === J ? yt(t, e) : n === void 0 ? R(t, e) : m(n) ? pt(t, e, n) : R(t, e);
+    }
+    function B(t, e) {
+      if (t === e)
+        w(t, dt());
+      else if (o(e)) {
+        var n = void 0;
+        try {
+          n = e.then;
+        } catch (i) {
+          w(t, i);
+          return;
+        }
+        at(t, e, n);
+      } else
+        R(t, e);
+    }
+    function bt(t) {
+      t._onerror && t._onerror(t._result), Q(t);
+    }
+    function R(t, e) {
+      t._state === I && (t._result = e, t._state = q, t._subscribers.length !== 0 && a(Q, t));
+    }
+    function w(t, e) {
+      t._state === I && (t._state = j, t._result = e, a(bt, t));
+    }
+    function H(t, e, n, i) {
+      var l = t._subscribers, u = l.length;
+      t._onerror = null, l[u] = e, l[u + q] = n, l[u + j] = i, u === 0 && t._state && a(Q, t);
+    }
+    function Q(t) {
+      var e = t._subscribers, n = t._state;
+      if (e.length !== 0) {
+        for (var i = void 0, l = void 0, u = t._result, g = 0; g < e.length; g += 3)
+          i = e[g], l = e[g + n], i ? ct(n, i, l, u) : l(u);
+        t._subscribers.length = 0;
+      }
+    }
+    function ct(t, e, n, i) {
+      var l = m(n), u = void 0, g = void 0, D = !0;
+      if (l) {
+        try {
+          u = n(i);
+        } catch (U) {
+          D = !1, g = U;
+        }
+        if (e === u) {
+          w(e, _t());
+          return;
+        }
+      } else
+        u = i;
+      e._state !== I || (l && D ? B(e, u) : D === !1 ? w(e, g) : t === q ? R(e, u) : t === j && w(e, u));
+    }
+    function gt(t, e) {
+      try {
+        e(function(i) {
+          B(t, i);
+        }, function(i) {
+          w(t, i);
+        });
+      } catch (n) {
+        w(t, n);
+      }
+    }
+    var lt = 0;
+    function wt() {
+      return lt++;
+    }
+    function ft(t) {
+      t[W] = lt++, t._state = void 0, t._result = void 0, t._subscribers = [];
+    }
+    function Et() {
+      return new Error("Array Methods must be provided an Array");
+    }
+    var Ct = function() {
+      function t(e, n) {
+        this._instanceConstructor = e, this.promise = new e(F), this.promise[W] || ft(this.promise), k(n) ? (this.length = n.length, this._remaining = n.length, this._result = new Array(this.length), this.length === 0 ? R(this.promise, this._result) : (this.length = this.length || 0, this._enumerate(n), this._remaining === 0 && R(this.promise, this._result))) : w(this.promise, Et());
+      }
+      return t.prototype._enumerate = function(n) {
+        for (var i = 0; this._state === I && i < n.length; i++)
+          this._eachEntry(n[i], i);
+      }, t.prototype._eachEntry = function(n, i) {
+        var l = this._instanceConstructor, u = l.resolve;
+        if (u === J) {
+          var g = void 0, D = void 0, U = !1;
+          try {
+            g = n.then;
+          } catch (tt) {
+            U = !0, D = tt;
+          }
+          if (g === X && n._state !== I)
+            this._settledAt(n._state, i, n._result);
+          else if (typeof g != "function")
+            this._remaining--, this._result[i] = n;
+          else if (l === C) {
+            var Z = new l(F);
+            U ? w(Z, D) : at(Z, n, g), this._willSettleAt(Z, i);
+          } else
+            this._willSettleAt(new l(function(tt) {
+              return tt(n);
+            }), i);
+        } else
+          this._willSettleAt(u(n), i);
+      }, t.prototype._settledAt = function(n, i, l) {
+        var u = this.promise;
+        u._state === I && (this._remaining--, n === j ? w(u, l) : this._result[i] = l), this._remaining === 0 && R(u, this._result);
+      }, t.prototype._willSettleAt = function(n, i) {
+        var l = this;
+        H(n, void 0, function(u) {
+          return l._settledAt(q, i, u);
+        }, function(u) {
+          return l._settledAt(j, i, u);
+        });
+      }, t;
+    }();
+    function xt(t) {
+      return new Ct(this, t).promise;
+    }
+    function Ot(t) {
+      var e = this;
+      return k(t) ? new e(function(n, i) {
+        for (var l = t.length, u = 0; u < l; u++)
+          e.resolve(t[u]).then(n, i);
+      }) : new e(function(n, i) {
+        return i(new TypeError("You must pass an array to race."));
+      });
+    }
+    function At(t) {
+      var e = this, n = new e(F);
+      return w(n, t), n;
+    }
+    function Tt() {
+      throw new TypeError("You must pass a resolver function as the first argument to the promise constructor");
+    }
+    function Pt() {
+      throw new TypeError("Failed to construct 'Promise': Please use the 'new' operator, this object constructor cannot be called as a function.");
+    }
+    var C = function() {
+      function t(e) {
+        this[W] = wt(), this._result = this._state = void 0, this._subscribers = [], F !== e && (typeof e != "function" && Tt(), this instanceof t ? gt(this, e) : Pt());
+      }
+      return t.prototype.catch = function(n) {
+        return this.then(null, n);
+      }, t.prototype.finally = function(n) {
+        var i = this, l = i.constructor;
+        return m(n) ? i.then(function(u) {
+          return l.resolve(n()).then(function() {
+            return u;
+          });
+        }, function(u) {
+          return l.resolve(n()).then(function() {
+            throw u;
+          });
+        }) : i.then(n, n);
+      }, t;
+    }();
+    C.prototype.then = X, C.all = xt, C.race = Ot, C.resolve = J, C.reject = At, C._setScheduler = v, C._setAsap = h, C._asap = a;
+    function St() {
+      var t = void 0;
+      if (typeof et < "u")
+        t = et;
+      else if (typeof self < "u")
+        t = self;
+      else
+        try {
+          t = Function("return this")();
+        } catch {
+          throw new Error("polyfill failed because global object is unavailable in this environment");
+        }
+      var e = t.Promise;
+      if (e) {
+        var n = null;
+        try {
+          n = Object.prototype.toString.call(e.resolve());
+        } catch {
+        }
+        if (n === "[object Promise]" && !e.cast)
+          return;
+      }
+      t.Promise = C;
+    }
+    return C.polyfill = St, C.Promise = C, C;
   });
-};
-var d = L;
-d.enableSynchronous = function() {
-  d.prototype.isPending = function() {
-    return this.getState() == 0;
-  }, d.prototype.isFulfilled = function() {
-    return this.getState() == 1;
-  }, d.prototype.isRejected = function() {
-    return this.getState() == 2;
-  }, d.prototype.getValue = function() {
-    if (this._y === 3)
-      return this._z.getValue();
-    if (!this.isFulfilled())
-      throw new Error("Cannot get a value of an unfulfilled promise.");
-    return this._z;
-  }, d.prototype.getReason = function() {
-    if (this._y === 3)
-      return this._z.getReason();
-    if (!this.isRejected())
-      throw new Error("Cannot get a rejection reason of a non-rejected promise.");
-    return this._z;
-  }, d.prototype.getState = function() {
-    return this._y === 3 ? this._z.getState() : this._y === -1 || this._y === -2 ? 0 : this._y;
-  };
-};
-d.disableSynchronous = function() {
-  d.prototype.isPending = void 0, d.prototype.isFulfilled = void 0, d.prototype.isRejected = void 0, d.prototype.getValue = void 0, d.prototype.getReason = void 0, d.prototype.getState = void 0;
-};
-(function(t) {
-  t.exports = L;
-})($t);
-(function(t) {
-  t.exports = J;
-})(Ft);
-const Y = /* @__PURE__ */ Et(Z), { mainEventEmitter: G, alertEmitter: H, promptEmitter: $, confirmEmitter: N } = ut;
-function K(t, e, n, o) {
-  t.emit(w.MAIN, {
-    eventEmitter: e,
-    type: n
-  }), e.emit("config", o);
+})(Wt);
+st.polyfill();
+const { mainEventEmitter: nt, alertEmitter: rt, promptEmitter: Y, confirmEmitter: G } = vt;
+function ot(s, r, o, m) {
+  s.emit(T.MAIN, {
+    eventEmitter: r,
+    type: o
+  }), r.emit("config", m);
 }
-const re = {
-  alert: (t) => (K(
-    G,
-    H,
-    R.ALERT,
-    t
-  ), new Y((e) => {
+const Ut = {
+  alert: (s) => (ot(
+    nt,
+    rt,
+    $.ALERT,
+    s
+  ), new Promise((r) => {
     try {
-      H.on("confirm", () => {
-        H.emit(w.CLOSE), e(!0);
+      rt.on("confirm", () => {
+        rt.emit(T.CLOSE), r(!0);
       });
-    } catch (n) {
-      console.error(n);
+    } catch (o) {
+      console.error(o);
     }
   })),
-  prompt: (t) => (K(
-    G,
-    $,
-    R.PROMPT,
-    t
-  ), new Y((e) => {
+  prompt: (s) => (ot(
+    nt,
+    Y,
+    $.PROMPT,
+    s
+  ), new Promise((r) => {
     try {
-      $.on("confirm", (n) => {
-        $.emit(w.CLOSE), e(n ?? "");
-      }), $.on("cancel", () => {
-        $.emit(w.CLOSE), e(!1);
+      Y.on("confirm", (o) => {
+        Y.emit(T.CLOSE), r(o ?? "");
+      }), Y.on("cancel", () => {
+        Y.emit(T.CLOSE), r(!1);
       });
-    } catch (n) {
-      console.error(n);
+    } catch (o) {
+      console.error(o);
     }
   })),
-  confirm: (t) => (K(
+  confirm: (s) => (ot(
+    nt,
     G,
-    N,
-    R.CONFIRM,
-    t
-  ), new Y((e) => {
+    $.CONFIRM,
+    s
+  ), new Promise((r) => {
     try {
-      N.on("confirm", () => {
-        N.emit(w.CLOSE), e(!0);
-      }), N.on("cancel", () => {
-        N.emit(w.CLOSE), e(!1);
+      G.on("confirm", () => {
+        G.emit(T.CLOSE), r(!0);
+      }), G.on("cancel", () => {
+        G.emit(T.CLOSE), r(!1);
       });
-    } catch (n) {
-      console.error(n);
+    } catch (o) {
+      console.error(o);
     }
   }))
-}, ie = {
-  install(t) {
-    let e = !1;
-    Object.defineProperty(t.prototype, "$dialogBox", {
+}, Kt = {
+  install(s) {
+    let r = !1;
+    Object.defineProperty(s.prototype, "$dialogBox", {
       get: function() {
-        const n = this;
-        if (n instanceof t) {
-          const o = n.$root;
-          e || (Lt(t, o, it), e = !0);
+        const o = this;
+        if (o instanceof s) {
+          const m = o.$root;
+          r || (Yt(s, m, ut), r = !0);
         }
-        return re;
+        return Ut;
       }
-    }), t.component("vue-dialog-box", it);
+    }), s.component("vue-dialog-box", ut);
   }
 };
 export {
-  ie as default
+  Kt as default
 };
