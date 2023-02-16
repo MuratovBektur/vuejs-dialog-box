@@ -34,8 +34,8 @@ Vue.use(VuejsDialogBox);
 ```js
 await this.$dialogBox.title({
   // bottom default values
-  title: "This is alert", // String. Title of dialog. Can be empty.
-  okText: "Ok" // String. Confirm button text. Can be empty.
+  title: "This is alert", // String. Title of dialog
+  okText: "Ok" // String. Confirm button text
 });
 //...your code
 
