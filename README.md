@@ -32,8 +32,12 @@ Vue.use(VuejsDialogBox);
 <br>
 
 ```js
-await this.$dialogBox.title();
-///...your code
+await this.$dialogBox.title({
+  // bottom default values
+  title: "This is alert", // String. Title of dialog. Can be empty.
+  okText: "Ok" // String. Confirm button text. Can be empty.
+});
+//...your code
 
 ```
 
@@ -43,17 +47,6 @@ await this.$dialogBox.title();
   <img src='https://media.giphy.com/media/D045GKe5McbqmJs72h/giphy.gif'/>
 </p>
 
-#### Api
-
-*  **title?:(string)**
-
-Title of dialog. Can be empty. Default value: "This is alert"
-
-*  **okText?:(string)**
-
-Confirm button text. Can be empty. Default value: "Ok"
-
-
 <br>
 
 ### Prompt
@@ -61,33 +54,22 @@ Confirm button text. Can be empty. Default value: "Ok"
 <br>
 
 ```js
-const text = await this.$dialogBox.prompt();
-///...your code
-```
+const text = await this.$dialogBox.prompt({
+  // bottom default values
+  title: "Write something", // String. Title of dialog.
+  okText: "Yes", // String. Confirm button text.
+  cancelText: "No", // String. Cancel button text.
+  placeholder: "", // String. Input placeholder text.
+  allowConfirmEmptyString: false, // Boolean. Is it possible to click on the confirm button if the text is empty. 
+});
 
+//...your code
+```
 <br>
 
 <p align='center'>
   <img src='https://media.giphy.com/media/upkZDUDyCCdY49xRUW/giphy.gif'/>
 </p>
-
-#### Api
-
-*  **title?:(string)**
-
-Title of dialog. Can be empty. Default value: "Write something"
-
-*  **okText?:(string)**
-
-Confirm button text. Can be empty. Default value: "Yes"
-
-*  **cancelText?:(string)**
-
-Cancel button text. Can be empty. Default value: "No"
-
-*  **placeholder?:(string)**
-
-Input placeholder text. Can be empty. Default value: ""
 
 
 <br>
@@ -99,9 +81,15 @@ Input placeholder text. Can be empty. Default value: ""
 
 
 ```js
-const ok = await this.$dialogBox.confirm();
+const ok = await this.$dialogBox.confirm({
+  // bottom default values
+  title: "Are you sure?", // String. Title of dialog.
+  okText: "Yes", // String. Confirm button text.
+  cancelText: "No", // String. Cancel button text.
+});
+
 if (ok) {
-///...your code
+  //...your code
 }
 ```
 
@@ -110,18 +98,3 @@ if (ok) {
 <p align='center'>
   <img src='https://media.giphy.com/media/7cfjeP8LpcUrU9VxCy/giphy.gif'/>
 </p>
-
-#### Api
-
-*  **title?:(string)**
-
-Title of dialog. Can be empty. Default value: "Are you sure?"
-
-*  **okText?:(string)**
-
-Confirm button text. Can be empty. Default value: "Yes"
-
-*  **cancelText?:(string)**
-
-Cancel button text. Can be empty. Default value: "No"
-

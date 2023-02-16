@@ -1,7 +1,7 @@
 {
   "name": "@prostreyd/vue-dialog",
   "description": "Vue dialog modal box (alert, prompt, confirm)",
-  "version": "1.0.8",
+  "version": "1.0.81",
   "repository": {
     "type": "git",
     "url": "https://github.com/MuratovBektur/vuejs-dialog-box.git"
