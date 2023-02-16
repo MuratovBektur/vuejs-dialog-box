@@ -5,7 +5,8 @@ export enum DialogType {
 }
 
 export enum EventType {
-  MAIN = 'main',
+  OPEN = 'open',
   CLOSE = 'close',
-  CONFIG = 'config',
+  CONFIRM = 'confirm',
+  CANCEL = 'cancel',
 }

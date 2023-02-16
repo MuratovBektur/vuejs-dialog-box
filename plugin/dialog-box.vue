@@ -37,6 +37,9 @@
             :class="{
               'confirm-modal__btn_active': form.prompt.text,
             }"
+            :disabled="
+              !form.prompt.allowConfirmEmptyString && !form.prompt.text
+            "
             @click="onConfirm"
           >
             {{ form.prompt.okText }}
@@ -76,7 +79,12 @@
 import Vue from 'vue'
 import { DialogType, EventType } from './types'
 import eventEmitters from './event-emitter'
-import { IDialogBoxOptions } from '../types/vue-dialog-box'
+import {
+  DialogBoxOptionsType,
+  IDialogBoxAlertOptions,
+  IDialogBoxPromptOptions,
+  IDialogBoxConfirmOptions,
+} from '../types/vue-dialog-box'
 
 const { mainEventEmitter } = eventEmitters
 
@@ -97,6 +105,7 @@ export default Vue.extend({
           title: 'Write something',
           okText: 'Yes',
           cancelText: 'No',
+          allowConfirmEmptyString: false,
           text: '',
           placeholder: '',
         },
@@ -106,30 +115,42 @@ export default Vue.extend({
           cancelText: 'No',
         },
       } as {
-        alert: IDialogBoxOptions
+        alert: IDialogBoxAlertOptions
         prompt: {
           text: string
-        } & IDialogBoxOptions
-        confirm: IDialogBoxOptions
+        } & IDialogBoxPromptOptions
+        confirm: IDialogBoxConfirmOptions
       },
     }
   },
   mounted() {
     this.disableScroll()
-    mainEventEmitter.on(
-      EventType.MAIN,
+    mainEventEmitter.$on(
+      EventType.OPEN,
       ({
         eventEmitter,
         type,
+        options,
       }: {
         eventEmitter: eventEmitterType
         type: DialogType
+        options?: DialogBoxOptionsType
       }) => {
         if (mainEventEmitter !== this.eventEmitter) {
           throw 'close another dialog box'
         }
         this.eventEmitter = eventEmitter
         this.type = type
+
+        if (!options || !this.type) return
+        type optionType = typeof options
+
+        for (let optionKey in options) {
+          const option = options[optionKey as keyof optionType]
+          if (option) {
+            this.form[this.type][optionKey as keyof optionType] = option
+          }
+        }
         this.subscribeEvents()
       }
     )
@@ -143,17 +164,7 @@ export default Vue.extend({
       this.form.prompt.text = ''
     },
     subscribeEvents() {
-      this.eventEmitter.on(EventType.CONFIG, (options?: IDialogBoxOptions) => {
-        if (!options || !this.type) return
-        for (let optionKey in options) {
-          const option: string | undefined =
-            options[optionKey as keyof IDialogBoxOptions]
-          if (option) {
-            this.form[this.type][optionKey as keyof IDialogBoxOptions] = option
-          }
-        }
-      })
-      this.eventEmitter.on(EventType.CLOSE, () => {
+      this.eventEmitter.$on(EventType.CLOSE, () => {
         this.type = null
         this.eventEmitter = mainEventEmitter
       })
@@ -169,11 +180,11 @@ export default Vue.extend({
       if (this.type === DialogType.PROMPT) {
         res = this.form.prompt.text
       }
-      this.eventEmitter.emit('confirm', res)
+      this.eventEmitter.$emit(EventType.CONFIRM, res)
       this.onDestroy()
     },
     onCancel() {
-      this.eventEmitter.emit('cancel')
+      this.eventEmitter.$emit(EventType.CANCEL)
       this.onDestroy()
     },
   },
@@ -239,6 +250,9 @@ export default Vue.extend({
     &_error {
       background-color: red;
       color: white;
+    }
+    &:disabled {
+      cursor: not-allowed;
     }
 
     &-container {

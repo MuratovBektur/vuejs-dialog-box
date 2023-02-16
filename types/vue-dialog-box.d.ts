@@ -10,6 +10,7 @@ export declare interface IDialogBoxPromptOptions {
   okText?: string
   cancelText?: string
   placeholder?: string
+  allowConfirmEmptyString?: boolean
 }
 export declare interface IDialogBoxConfirmOptions {
   title?: string
@@ -17,10 +18,10 @@ export declare interface IDialogBoxConfirmOptions {
   cancelText?: string
 }
 
-export declare interface IDialogBoxOptions
-  extends IDialogBoxConfirmOptions,
-    IDialogBoxAlertOptions,
-    IDialogBoxPromptOptions {}
+export declare type DialogBoxOptionsType =
+  | IDialogBoxConfirmOptions
+  | IDialogBoxAlertOptions
+  | IDialogBoxPromptOptions
 
 export declare interface IDialogBox {
   alert: (options?: IDialogBoxAlertOptions) => Promise<true>

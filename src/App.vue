@@ -7,11 +7,13 @@
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
-  mounted() {
-    this.$dialogBox.prompt({
+  async mounted() {
+    const res = await this.$dialogBox.prompt({
+      allowConfirmEmptyString: true,
       title: 'another',
       okText: 'YEad',
     })
+    console.log('res', res)
   },
   methods: {
     showAlert() {
